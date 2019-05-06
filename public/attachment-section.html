@@ -32,6 +32,7 @@
         .then(function (attachArray) {
           var latestURL = attachArray[attachArray.length - 1].url
           t.set("card", "shared", "coords", GoogleMapsURLToEmbedURL(latestURL))
+          document.location.reload()
         })
     })
   </script>
