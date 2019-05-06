@@ -62,11 +62,14 @@
 
   <script>
     t.render(function () {
-      t.card("attachments").then(function(fk){
+
+      t.card().then(function(fk){
         console.log(fk)
       })
 
       t.card('attachments')
+      //gets the all the attachments on a card that is currently open
+      //what else can be passed into the t.card() method?
         .get('attachments')
         .filter(function (attachment) {
           return attachment.url.indexOf('https://www.google.com/maps/place/') == 0
