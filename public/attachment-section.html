@@ -1,0 +1,88 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://p.trellocdn.com/power-up.min.css">
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  <script src="./js/googleUrlConverter.js"></script>
+
+  <style>
+    #googleIFRAME {
+      height: 320px;
+      width: 512px;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div id="googleIFRAME"></div>
+
+  <script>
+    function initMap() {
+      //             t.get("card", "shared", "coords").then(function(hey){
+      //             console.log(hey)
+      //             })
+
+      console.log("fkfkfk")
+      t.get("card", "shared", "coords").then(function (coords) {
+        var coordi = {
+          lat: Number(coords.latitude), lng: Number(coords.longitude)
+        }
+
+        var map = new google.maps.Map(document.getElementById('googleIFRAME'), {
+          center: coordi,
+          zoom: 16
+        })
+
+        var marker = new google.maps.Marker({ position: coordi, map: map })
+      })
+
+      //             t.get("card", "shared", "latitude").then(function(lati){
+      //             t.get("card", "shared", "longitude").then(function(longi){
+      //                 var coordi = {
+      //                   lat : Number(lati), lng : Number(longi)
+      //                 }
+
+      //               var map = new google.maps.Map(document.getElementById('googleIFRAME'), {
+      //                 center: coordi,
+      //                 zoom: 16
+      //               })
+
+      //               var marker = new google.maps.Marker({position: coordi, map: map})
+
+      //             })
+      // })
+
+
+    }
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUapN3kozFMAp4SOwmpU4e6eVqDZD_DEU&callback=initMap">
+  </script>
+
+  <script>
+    t.render(function () {
+      // t.card("attachments").then(function(fk){
+      //   console.log(fk)
+      // })
+
+    
+
+      t.card('attachments')
+        .get('attachments')
+        .filter(function (attachment) {
+          return attachment.url.indexOf('https://www.google.com/maps/place/') == 0
+        })
+        .then(function (attachArray) {
+          var urls = attachArray.map(function (a) { return a.url; })
+          var latestURL = urls[urls.length - 1]
+          GoogleMapsURLToEmbedURL(latestURL)
+        })
+    })
+  </script>
+</body>
+
+</html>
