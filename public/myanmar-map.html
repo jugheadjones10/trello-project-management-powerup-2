@@ -1,150 +1,101 @@
 <html>
+
 <head>
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
-  <style>#MyanmarMap{height: 100%; width: 100%;}</style>
-  <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://trello.com/1/client.js?key=aa0f9cf4d2d738632836aa054dcdda43"></script>
+  <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css">
+  <style>
+    #MyanmarMap {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
 </head>
+
 <body>
-   <div id="MyanmarMap"></div>
-  
-    <script>
-      var t = window.TrelloPowerUp.iframe()
-       
-      function initMap() {
-          var mapMarkersList = []
-          var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-          
-          var map = new google.maps.Map(document.getElementById('MyanmarMap'), {
-            zoom: 6,
-            center: {lat: 21.916221,lng :95.955974}
-          })
-          var authenticationSuccess = function() {
-            console.log('Successful authentication')
-          }
-          var authenticationFailure = function() {
-            console.log('Failed authentication')
-          }
-          window.Trello.authorize({
-            type: 'popup',
-            name: 'Getting Started Application',
-            scope: {
-              read: 'true',
-              write: 'true' },
-            expiration: 'never',
-            success: authenticationSuccess,
-            error: authenticationFailure
-          })
-        
-          t.board("id").then(function(result){
-            Trello.get(`boards/${result.id}/cards`, 
-              function(cardsList){
-                cardsList.forEach(function(card){
-                  Trello.get(`cards/${card.id}/pluginData`,
-                    function(pluginData){
-                      var cardCoords = JSON.parse(pluginData[0].value).coords
-                      if(cardCoords){
-                        var marker = new google.maps.Marker(
-                         {
-                           position: {
-                             lng: Number(cardCoords.longitude),
-                             lat: Number(cardCoords.latitude)
-                           }, 
-                           map: map
-                         })
-                        
-                        
-                         // mapMarkersList.push(
-                         //   {lng: Number(cardCoords.longitude),  lat: Number(cardCoords.latitude)}
-                         // )
-                        
-                        // mapMarkersList.push(
-                        //   new google.maps.Marker({
-                        //     position: {  
-                        //       lng: Number(cardCoords.longitude),  
-                        //       lat: Number(cardCoords.latitude)
-                        //     },
-                        //     label: "a"
-                        //   })
-                        // )
-                  
-                      }
-                    }
-                  )
-                })
-  
-                
-              })
-          })
-       
-          //console.log(mapMarkersList)
-          //var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-          // var markers = mapMarkersList.map(function(location, i){
-          //   return new google.maps.Marker({
-          //     position: location,
-          //     label: "fkin"[i]
-          //   })
-          // })
-          // console.log(markers)
-          // var markerCluster = new MarkerClusterer(map, markers, {imagePath: 'https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjxqKP74vfhAhWPfH0KHa5hD8QQjRx6BAgBEAU&url=https%3A%2F%2Fwww.newburycomics.com%2Fproducts%2Frick_and_morty-drunk_rick_face_enamel_pin&psig=AOvVaw1p8A-DSoAz-fjvyPN2ZcaD&ust=1556712189359241'})
-      
-          
+  <div id="MyanmarMap"></div>
+
+  <script>
+    var t = window.TrelloPowerUp.iframe()
+
+    function initMap() {
+      var mapMarkersList = []
+      var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+      var map = new google.maps.Map(document.getElementById('MyanmarMap'), {
+        zoom: 6,
+        center: { lat: 21.916221, lng: 95.955974 }
+      })
+
+      window.Trello.authorize({
+        type: 'popup',
+        name: 'Getting Started Application',
+        scope: {
+          read: 'true',
+          write: 'true'
+        },
+        expiration: 'never',
+        success: function () {
+          console.log('Successful authentication')
+        },
+        error: function () {
+          console.log('Failed authentication')
         }
-//             .then(function(){
-//              mapMarkersList.forEach(function(location){
-//                  console.log(location)
-//                  var marker = new google.maps.Marker(
-//                    {
-//                      position: {
-//                        lng: location.longitude,
-//                        lat: location.latitude
-//                      }, 
-//                      map: map
-//                    })
-//              })
-//           })
-      
-             
-          
-//         var data = null;
-//         var xhr = new XMLHttpRequest();
+      })
 
-//         xhr.addEventListener("readystatechange", function () {
-//           if (this.readyState === this.DONE) {
-//             var bigBody = JSON.parse(this.response).cards
+      t.cards("id").then(function(fk){
+        console.log(fk)
+      })
 
-//             var locations = []
-//             for(var i = 0; i < bigBody.length; i++){
-//               var la = JSON.parse(bigBody[i].pluginData[0].value).latitude
-//               var lo = JSON.parse(bigBody[i].pluginData[0].value).longitude
-//               var lol = {
-//                 lat : la, 
-//                 lng : lo
-//               }
-//               locations.push(lol)
-//             }
-            
-//               var markers = locations.map(function(location, z) {
-//                 return new google.maps.Marker({
-//                     position: location
-//                 });
-//               });
+      t.board("id").then(function (result) {
+        Trello.get(`boards/${result.id}/cards`,
+          function (cardsList) {
+            cardsList.forEach(function (card) {
+              Trello.get(`cards/${card.id}/pluginData`,
+                function (pluginData) {
+                  var cardCoords = JSON.parse(pluginData[0].value).coords
+                  if (cardCoords) {
+                    var marker = new google.maps.Marker(
+                      {
+                        position: {
+                          lng: Number(cardCoords.longitude),
+                          lat: Number(cardCoords.latitude)
+                        },
+                        map: map
+                      })
 
-//               var markerCluster = new MarkerClusterer(map, markers,
-//                   {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-//           }
-//         });
 
-//         xhr.open("GET", "https://api.trello.com/1/boards/7AmLPD2t?actions=all&boardStars=none&cards=visible&card_pluginData=true&checklists=none&customFields=false&fields=name%2Cdesc%2CdescData%2Cclosed%2CidOrganization%2Cpinned%2Curl%2CshortUrl%2Cprefs%2ClabelNames&lists=open&members=none&memberships=none&membersInvited=none&membersInvited_fields=all&pluginData=false&organization=false&organization_pluginData=false&myPrefs=false&tags=false&key=aa0f9cf4d2d738632836aa054dcdda43&token=2741b4a30a0f215a493f1a3bc0d21e415cda8c2f7541611635ca6dbfd878ae49");
-//         xhr.send(data);
-//         }
-      
-    </script>
-    
-  
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUapN3kozFMAp4SOwmpU4e6eVqDZD_DEU&callback=initMap"></script>
+                    // mapMarkersList.push(
+                    //   {lng: Number(cardCoords.longitude),  lat: Number(cardCoords.latitude)}
+                    // )
+
+                    // mapMarkersList.push(
+                    //   new google.maps.Marker({
+                    //     position: {  
+                    //       lng: Number(cardCoords.longitude),  
+                    //       lat: Number(cardCoords.latitude)
+                    //     },
+                    //     label: "a"
+                    //   })
+                    // )
+
+                  }
+                }
+              )
+            })
+
+
+          })
+      })
+    }
+  </script>
+
+
+  <script
+    src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUapN3kozFMAp4SOwmpU4e6eVqDZD_DEU&callback=initMap"></script>
 </body>
-</html>
 
+</html>

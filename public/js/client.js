@@ -26,8 +26,6 @@ TrelloPowerUp.initialize({
                     resizable: true,
                     title: "Project Location Overview",
                 })
-
-
             },
             condition: 'edit'
         }]
