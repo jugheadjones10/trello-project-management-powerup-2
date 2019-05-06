@@ -3,8 +3,7 @@ var cors = require('cors')
 var request = require('request')
 
 var app = express()
-var port = 3000
-//process.env.PORT
+var port = process.env.PORT
 
 // your manifest must have appropriate CORS headers, you could also use '*'
 app.use(cors({ origin: '*' }))
