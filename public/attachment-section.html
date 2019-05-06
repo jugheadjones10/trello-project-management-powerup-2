@@ -63,7 +63,7 @@
   <script>
     t.render(function () {
 
-      t.card().then(function(fk){
+      t.card("all").then(function(fk){
         console.log(fk)
       })
 
@@ -75,8 +75,10 @@
           return attachment.url.indexOf('https://www.google.com/maps/place/') == 0
         })
         .then(function (attachArray) {
-          var urls = attachArray.map(function (a) { return a.url; })
-          var latestURL = urls[urls.length - 1]
+          // var urls = attachArray.map(function (a) { return a.url })
+          // var latestURL = urls[urls.length - 1]
+
+          var latestURL = attachArray[attachArray.length - 1].url
           GoogleMapsURLToEmbedURL(latestURL)
         })
     })
