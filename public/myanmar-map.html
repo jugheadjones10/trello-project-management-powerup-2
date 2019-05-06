@@ -18,6 +18,9 @@
 
   <script>
     var t = window.TrelloPowerUp.iframe()
+    t.render(function(){
+      document.location.reload()
+    })
 
     function initMap() {
       var mapMarkersList = []
@@ -44,26 +47,40 @@
         }
       })
 
-      t.cards("id").then(function(fk){
-        console.log(fk)
+      t.cards("id").then(function (ids) {
+        ids.forEach(function (id) {
+          Trello.get(`cards/${id.id}/pluginData`, function (pluginData) {
+            var cardCoords = JSON.parse(pluginData[0].value).coords
+            if (cardCoords) {
+              var marker = new google.maps.Marker(
+                {
+                  position: {
+                    lng: Number(cardCoords.longitude),
+                    lat: Number(cardCoords.latitude)
+                  },
+                  map: map
+                })
+
+            }
+        })
       })
 
-      t.board("id").then(function (result) {
-        Trello.get(`boards/${result.id}/cards`,
-          function (cardsList) {
-            cardsList.forEach(function (card) {
-              Trello.get(`cards/${card.id}/pluginData`,
-                function (pluginData) {
-                  var cardCoords = JSON.parse(pluginData[0].value).coords
-                  if (cardCoords) {
-                    var marker = new google.maps.Marker(
-                      {
-                        position: {
-                          lng: Number(cardCoords.longitude),
-                          lat: Number(cardCoords.latitude)
-                        },
-                        map: map
-                      })
+      // t.board("id").then(function (result) {
+      //   Trello.get(`boards/${result.id}/cards`,
+      //     function (cardsList) {
+      //       cardsList.forEach(function (card) {
+      //         Trello.get(`cards/${card.id}/pluginData`,
+      //           function (pluginData) {
+      //             var cardCoords = JSON.parse(pluginData[0].value).coords
+      //             if (cardCoords) {
+      //               var marker = new google.maps.Marker(
+      //                 {
+      //                   position: {
+      //                     lng: Number(cardCoords.longitude),
+      //                     lat: Number(cardCoords.latitude)
+      //                   },
+      //                   map: map
+      //                 })
 
 
                     // mapMarkersList.push(
@@ -80,15 +97,15 @@
                     //   })
                     // )
 
-                  }
-                }
-              )
-            })
+    //               }
+    //             }
+    //           )
+    //         })
 
 
-          })
-      })
-    }
+    //       })
+    //   })
+    // }
   </script>
 
 
