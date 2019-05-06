@@ -7,7 +7,6 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
   <script src="./js/googleUrlConverter.js"></script>
-
   <style>
     #googleIFRAME {
       height: 320px;
@@ -25,8 +24,6 @@
       //             t.get("card", "shared", "coords").then(function(hey){
       //             console.log(hey)
       //             })
-
-      console.log("fkfkfk")
       t.get("card", "shared", "coords").then(function (coords) {
         var coordi = {
           lat: Number(coords.latitude), lng: Number(coords.longitude)
@@ -65,11 +62,9 @@
 
   <script>
     t.render(function () {
-      // t.card("attachments").then(function(fk){
-      //   console.log(fk)
-      // })
-
-    
+      t.card("attachments").then(function(fk){
+        console.log(fk)
+      })
 
       t.card('attachments')
         .get('attachments')
