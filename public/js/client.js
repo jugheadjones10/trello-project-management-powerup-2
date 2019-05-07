@@ -6,7 +6,12 @@ var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 
 TrelloPowerUp.initialize({
     'card-badges': function (t, opts) {
-        console.log(opts)
+        // console.log(opts)
+        // var listToColorMapper
+        // t.lists("name").get("name").then(function(names){
+        //     console.log(names)
+        // })
+
 
         // return[ 
         //     {
@@ -42,7 +47,7 @@ TrelloPowerUp.initialize({
                         // this as well if we needed to do something async first
                         return {
                             text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
-                            icon: './images/icon.svg',
+                            icon: BLACK_ROCKET_ICON,
                             color: 'green',
                             refresh: 10 // in seconds
                         };
@@ -52,7 +57,7 @@ TrelloPowerUp.initialize({
                     // badges to refresh you can mix and match between
                     // static and dynamic
                     text: 'Static',
-                    icon: HYPERDEV_ICON, // for card front badges only
+                    icon: BLACK_ROCKET_ICON, // for card front badges only
                     color: null
                 }];
             });
