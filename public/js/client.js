@@ -21,10 +21,11 @@ TrelloPowerUp.initialize({
         return[ 
             {
                 dynamic: function(){
-                    var theColor = Trello.get(`cards/${opts.context.card}/list`, function(list){
+                    var theColor 
+                    Trello.get(`cards/${opts.context.card}/list`, function(list){
                         var hey = list.name
                         //console.log(listToColorMapper[hey])
-                        return listToColorMapper[hey]
+                        theColor = listToColorMapper[hey]
                         //return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
                     })
 
