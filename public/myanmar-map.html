@@ -23,8 +23,12 @@
     // t.render(function(){
     //   document.location.reload()
     // })
-    t.get("action", "shared").then(function(fk){
-      console.log(fk)
+    t.cards("id").then(function(cardIds){
+      cardsIds.forEach(function(id){
+        Trello.get(`cards/${id}/actions`, function(actions){
+          console.log(actions)
+        })
+      })
     })
 
     function initMap() {
