@@ -37,8 +37,8 @@ TrelloPowerUp.initialize({
             Trello.get(`cards/${opts.context.card}/list`, function(list){
                 var hey = list.name
                 cardColor = listToColorMapper[hey]
-                return callback()
             })
+            return callback()
         }
 
         return callback2(callback)
