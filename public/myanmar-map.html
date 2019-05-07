@@ -24,7 +24,7 @@
     //   document.location.reload()
     // })
     t.cards("id").then(function(cardIds){
-      cardsIds.forEach(function(id){
+      cardIds.forEach(function(id){
         Trello.get(`cards/${id.id}/actions`, function(actions){
           console.log(actions)
         })
