@@ -18,12 +18,7 @@ TrelloPowerUp.initialize({
         })
 
         var cardColor
-        Trello.get(`cards/${opts.context.card}/list`, function(list){
-            var hey = list.name
-            cardColor = listToColorMapper[hey]
-        })
-
-        if(cardColor){
+        function callback(){
             return[ 
                 {
                     dynamic: function(){
@@ -34,25 +29,20 @@ TrelloPowerUp.initialize({
                             refresh: 10 // in seconds
                         }
                     }
-                    
-                    // function(){
-                    //     var theColor 
-                        
-    
-                       
-    
-                       
-                    //     // t.cards("id").then(function (cardIds) {
-                    //     //     return cardIds.forEach(function (id) {
-                    //     //       Trello.get(`cards/${id.id}/list`, function (list) {
-                    //     //         console.log(list)
-                    //     //       })
-                    //     //     })
-                    //     // })
-                    // }
                 }
             ]    
         }
+        
+        function callback2(callback){
+            Trello.get(`cards/${opts.context.card}/list`, function(list){
+                var hey = list.name
+                cardColor = listToColorMapper[hey]
+                return callback()
+            })
+        }
+
+        return callback2(callback)
+        
       
         // let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
         // return t.card('name')
