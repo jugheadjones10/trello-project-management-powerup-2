@@ -17,43 +17,43 @@ TrelloPowerUp.initialize({
 
         })
 
-        function getCardColor(){
-            Trello.get(`cards/${opts.context.card}/list`, function(list){
-                var hey = list.name
-                return listToColorMapper[hey]
-            })
-        }
+        var cardColor
+        Trello.get(`cards/${opts.context.card}/list`, function(list){
+            var hey = list.name
+            cardColor = listToColorMapper[hey]
+        })
 
-
-        return[ 
-            {
-                dynamic: function(){
-                    return {
-                        text: 'FUCK',
-                        icon: null,
-                        color: getCardColor(),
-                        refresh: 10 // in seconds
+        if(cardColor){
+            return[ 
+                {
+                    dynamic: function(){
+                        return {
+                            text: 'FUCK',
+                            icon: null,
+                            color: cardColor,
+                            refresh: 10 // in seconds
+                        }
                     }
-                }
-                
-                // function(){
-                //     var theColor 
                     
-
-                   
-
-                   
-                //     // t.cards("id").then(function (cardIds) {
-                //     //     return cardIds.forEach(function (id) {
-                //     //       Trello.get(`cards/${id.id}/list`, function (list) {
-                //     //         console.log(list)
-                //     //       })
-                //     //     })
-                //     // })
-                // }
-            }
-        ]
-
+                    // function(){
+                    //     var theColor 
+                        
+    
+                       
+    
+                       
+                    //     // t.cards("id").then(function (cardIds) {
+                    //     //     return cardIds.forEach(function (id) {
+                    //     //       Trello.get(`cards/${id.id}/list`, function (list) {
+                    //     //         console.log(list)
+                    //     //       })
+                    //     //     })
+                    //     // })
+                    // }
+                }
+            ]    
+        }
+      
         // let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
         // return t.card('name')
         //     .get('name')
