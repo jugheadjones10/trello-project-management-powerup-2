@@ -6,16 +6,17 @@ var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 
 TrelloPowerUp.initialize({
     'card-badges': function (t, opts) {
+        console.log(opts)
+        
         return[ 
             {
                 dynamic: function(){
-                    console.log(opts)
                     return {
                         text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
-                        //icon: './images/icon.svg',
+                        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
                         color: 'green',
                         refresh: 10 // in seconds
-                    };
+                    }
                     // t.cards("id").then(function (cardIds) {
                     //     return cardIds.forEach(function (id) {
                     //       Trello.get(`cards/${id.id}/list`, function (list) {
