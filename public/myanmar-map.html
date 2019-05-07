@@ -18,8 +18,13 @@
 
   <script>
     var t = window.TrelloPowerUp.iframe()
-    t.render(function(){
-      document.location.reload()
+
+    //Check if attachement was added to card; if yes, refresh myanmar map.
+    // t.render(function(){
+    //   document.location.reload()
+    // })
+    t.get("action", "shared").then(function(fk){
+      console.log(fk)
     })
 
     function initMap() {
