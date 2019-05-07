@@ -6,13 +6,13 @@ var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 
 TrelloPowerUp.initialize({
     'card-badges': function (t, opts) {
-        // console.log(opts)
-        // var listToColorMapper
-        // t.lists("name").get("name").then(function(names){
-        //     console.log(names)
-        //     // for(var i = 0; i < ;)
-        //     // listToColorMapper.names = markerColors
-        // })
+        console.log(opts)
+        var listToColorMapper
+        t.lists("name").get("name").then(function(names){
+            console.log(names)
+            // for(var i = 0; i < ;)
+            // listToColorMapper.names = markerColors
+        })
 
 
         // return[ 
