@@ -20,30 +20,34 @@ TrelloPowerUp.initialize({
 
         return[ 
             {
-                dynamic: function(){
-                    var theColor 
-                    Trello.get(`cards/${opts.context.card}/list`, function(list){
-                        var hey = list.name
-                        //console.log(listToColorMapper[hey])
-                        theColor = listToColorMapper[hey]
-                        console.log(theColor)
-                        return {
-                            text: 'FUCK',
-                            icon: null,
-                            color: theColor,
-                            refresh: 10 // in seconds
-                        }
-                    })
+                dynamic: Trello.get(`cards/${opts.context.card}/list`, function(list){
+                    var hey = list.name
+                    //console.log(listToColorMapper[hey])
+                    theColor = listToColorMapper[hey]
+                    console.log(theColor)
+                    return {
+                        text: 'FUCK',
+                        icon: null,
+                        color: theColor,
+                        refresh: 10 // in seconds
+                    }
+                })
+                
+                // function(){
+                //     var theColor 
+                    
 
                    
-                    // t.cards("id").then(function (cardIds) {
-                    //     return cardIds.forEach(function (id) {
-                    //       Trello.get(`cards/${id.id}/list`, function (list) {
-                    //         console.log(list)
-                    //       })
-                    //     })
-                    // })
-                }
+
+                   
+                //     // t.cards("id").then(function (cardIds) {
+                //     //     return cardIds.forEach(function (id) {
+                //     //       Trello.get(`cards/${id.id}/list`, function (list) {
+                //     //         console.log(list)
+                //     //       })
+                //     //     })
+                //     // })
+                // }
             }
         ]
 
