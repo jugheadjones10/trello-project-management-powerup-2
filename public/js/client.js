@@ -18,12 +18,11 @@ TrelloPowerUp.initialize({
                 //   url: "https://trello.com/c/U1VQSrJX/16-myanmar-map"
                 // });
 
-                t.boardBar({
+                t.modal({
                     url: './myanmar-map.html',
                     accentColor: '#F2D600',
-                    height: 5000,
+                    fullscreen: true,
                     callback: () => console.log('Goodbye.'),
-                    resizable: true,
                     title: "Project Location Overview",
                 })
             },

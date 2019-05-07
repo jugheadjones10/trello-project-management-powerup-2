@@ -22,7 +22,7 @@
 
     //Add a color scheme array
 
-    
+
     t.render(function () {
       t.card('attachments')
       //gets the all the attachments on a card that is currently open
@@ -36,7 +36,7 @@
         .then(function (attachArray) {
           var latestURL = attachArray[attachArray.length - 1].url
           t.set("card", "shared", "coords", GoogleMapsURLToEmbedURL(latestURL))
-          document.location.reload()
+          window.location.reload()
         })
     })
   </script>

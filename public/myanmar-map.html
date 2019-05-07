@@ -19,17 +19,13 @@
   <script>
     var t = window.TrelloPowerUp.iframe()
 
-    //Check if attachement was added to card; if yes, refresh myanmar map.
-    // t.render(function(){
-    //   document.location.reload()
+    // t.cards("id").then(function(cardIds){
+    //   cardIds.forEach(function(id){
+    //     Trello.get(`cards/${id.id}/actions?filter=all`, function(actions){
+    //       console.log(actions)
+    //     })
+    //   })
     // })
-    t.cards("id").then(function(cardIds){
-      cardIds.forEach(function(id){
-        Trello.get(`cards/${id.id}/actions?filter=all`, function(actions){
-          console.log(actions)
-        })
-      })
-    })
 
     function initMap() {
       var mapMarkersList = []
