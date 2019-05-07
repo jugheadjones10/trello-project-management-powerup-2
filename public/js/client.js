@@ -17,21 +17,24 @@ TrelloPowerUp.initialize({
 
         })
 
+        function getCardColor(){
+            Trello.get(`cards/${opts.context.card}/list`, function(list){
+                var hey = list.name
+                return listToColorMapper[hey]
+            })
+        }
+
 
         return[ 
             {
-                dynamic: Trello.get(`cards/${opts.context.card}/list`, function(list){
-                    var hey = list.name
-                    //console.log(listToColorMapper[hey])
-                    theColor = listToColorMapper[hey]
-                    console.log(theColor)
+                dynamic: function(){
                     return {
                         text: 'FUCK',
                         icon: null,
-                        color: theColor,
+                        color: getCardColor(),
                         refresh: 10 // in seconds
                     }
-                })
+                }
                 
                 // function(){
                 //     var theColor 
