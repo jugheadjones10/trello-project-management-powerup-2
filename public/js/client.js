@@ -27,15 +27,15 @@ TrelloPowerUp.initialize({
                         //console.log(listToColorMapper[hey])
                         theColor = listToColorMapper[hey]
                         console.log(theColor)
-                        //return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                        return {
+                            text: 'FUCK',
+                            icon: null,
+                            color: theColor,
+                            refresh: 10 // in seconds
+                        }
                     })
 
-                    return {
-                        text: 'FUCK',
-                        icon: null,
-                        color: theColor,
-                        refresh: 10 // in seconds
-                    }
+                   
                     // t.cards("id").then(function (cardIds) {
                     //     return cardIds.forEach(function (id) {
                     //       Trello.get(`cards/${id.id}/list`, function (list) {
