@@ -5,17 +5,46 @@ var BLACK_ROCKET_ICON = 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9
 var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 
 TrelloPowerUp.initialize({
-    'card-badges': function (t, opts) {
-    
+    'board-buttons': function (t, opts) {
+
         var listToColorMapper = {}
         t.lists("name").then(function(names){
             for(var i = 0; i < names.length; i++){
                 var realName = names[i].name
                 listToColorMapper[realName] = markerColors[i]
             }
-            //console.log(listToColorMapper)
-
+        }).then(function(){
+            t.set("board", "shared", "listToColorMapper", listToColorMapper)
         })
+       
+        return [{
+            text: 'Myanmar Map',
+            callback: function (t, options) {
+                // var boardName
+                // var boardShortLink
+                // t.board("shorLink", "name").then(function(stuff){
+                //   boardName = stuff.name
+                //   boardShortLink = stuff.shortLink
+                // })
+
+                //var urlTo = "https://trello.com/b/" + boardID + "/" + boardName 
+                // t.navigate({
+                //   url: "https://trello.com/c/U1VQSrJX/16-myanmar-map"
+                // });
+
+                t.modal({
+                    url: './myanmar-map.html',
+                    accentColor: '#F2D600',
+                    fullscreen: true,
+                    callback: () => console.log('Goodbye.'),
+                    title: "Project Location Overview",
+                })
+            },
+            condition: 'edit'
+        }]
+    },
+
+    'card-badges': function (t, opts) {
 
         var cardColor
         function callback(){
@@ -35,15 +64,15 @@ TrelloPowerUp.initialize({
         
         function callback2(callback){
             Trello.get(`cards/${opts.context.card}/list`, function(list){
-                cardColor = listToColorMapper[list.name]
+                t.get("board", "shared", "listToColorMapper").then(function(mapper){
+                    cardColor = mapper[list.name]
+                })
             })
             return callback()
         }
 
         return callback2(callback)
-        
-
-      
+    
         // let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
         // return t.card('name')
         //     .get('name')
@@ -72,33 +101,6 @@ TrelloPowerUp.initialize({
         //             color: null
         //         }];
         //     });
-    },
-    'board-buttons': function (t, opts) {
-        return [{
-            text: 'Myanmar Map',
-            callback: function (t, options) {
-                // var boardName
-                // var boardShortLink
-                // t.board("shorLink", "name").then(function(stuff){
-                //   boardName = stuff.name
-                //   boardShortLink = stuff.shortLink
-                // })
-
-                //var urlTo = "https://trello.com/b/" + boardID + "/" + boardName 
-                // t.navigate({
-                //   url: "https://trello.com/c/U1VQSrJX/16-myanmar-map"
-                // });
-
-                t.modal({
-                    url: './myanmar-map.html',
-                    accentColor: '#F2D600',
-                    fullscreen: true,
-                    callback: () => console.log('Goodbye.'),
-                    title: "Project Location Overview",
-                })
-            },
-            condition: 'edit'
-        }]
     },
 
     'attachment-sections': function (t, options) {
