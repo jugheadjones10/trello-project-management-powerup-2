@@ -14,21 +14,24 @@ TrelloPowerUp.initialize({
                 listToColorMapper[realName] = markerColors[i]
             }
             console.log(listToColorMapper)
+
         })
 
 
         return[ 
             {
                 dynamic: function(){
+                    var theColor = Trello.get(`cards/${opts.context.card}/list`, function(list){
+                        var hey = list.name
+                        console.log(listToColorMapper.hey)
+                        return listToColorMapper.hey
+                        //return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                    })
+
                     return {
                         text: 'FUCK',
                         icon: null,
-                        color: Trello.get(`cards/${opts.context.card}/list`, function(list){
-                            var hey = list.name
-                            console.log(listToColorMapper.hey)
-                            return listToColorMapper.hey
-                            //return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-                        }),
+                        color: theColor,
                         refresh: 10 // in seconds
                     }
                     // t.cards("id").then(function (cardIds) {
