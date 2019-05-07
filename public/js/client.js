@@ -1,18 +1,18 @@
 var Promise = TrelloPowerUp.Promise
 var BLACK_ROCKET_ICON = 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Frocket-ship.png?1494946700421'
 
-
+t.cards("id").then(function(cardIds){
+    cardIds.forEach(function(id){
+        Trello.get(`cards/${id.id}/list`, function(list){
+            console.log(list)
+        })
+    })
+})
 
 
 TrelloPowerUp.initialize({
-    'card-badges': function (t, opts) {
-        t.cards("id").then(function(cardIds){
-            cardIds.forEach(function(id){
-                Trello.get(`cards/${id.id}/list`, function(list){
-                    console.log(list)
-                })
-            })
-        })
+    // 'card-badges': function (t, opts) {
+
         // return[ 
         //     dynamic: t.get
         // ]
@@ -45,7 +45,7 @@ TrelloPowerUp.initialize({
         //             color: null
         //         }];
         //     });
-    },
+    // },
     'board-buttons': function (t, opts) {
         return [{
             text: 'Myanmar Map',
