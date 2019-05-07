@@ -1,6 +1,11 @@
 var Promise = TrelloPowerUp.Promise
 var BLACK_ROCKET_ICON = 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Frocket-ship.png?1494946700421'
 
+var t = window.TrelloPowerUp.iframe()
+
+//Add a color scheme array
+var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
+
 t.cards("id").then(function(cardIds){
     cardIds.forEach(function(id){
         Trello.get(`cards/${id.id}/list`, function(list){
