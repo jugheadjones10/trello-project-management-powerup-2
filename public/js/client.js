@@ -5,11 +5,27 @@ var BLACK_ROCKET_ICON = 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9
 var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 
 TrelloPowerUp.initialize({
-    // 'card-badges': function (t, opts) {
-
-        // return[ 
-        //     dynamic: t.get
-        // ]
+    'card-badges': function (t, opts) {
+        return[ 
+            {
+                dynamic: function(){
+                    console.log(opts)
+                    return {
+                        text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
+                        //icon: './images/icon.svg',
+                        color: 'green',
+                        refresh: 10 // in seconds
+                    };
+                    // t.cards("id").then(function (cardIds) {
+                    //     return cardIds.forEach(function (id) {
+                    //       Trello.get(`cards/${id.id}/list`, function (list) {
+                    //         console.log(list)
+                    //       })
+                    //     })
+                    // })
+                }
+            }
+        ]
 
         // let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
         // return t.card('name')
@@ -39,7 +55,7 @@ TrelloPowerUp.initialize({
         //             color: null
         //         }];
         //     });
-    // },
+    },
     'board-buttons': function (t, opts) {
         return [{
             text: 'Myanmar Map',
