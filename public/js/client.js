@@ -7,55 +7,55 @@ var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 TrelloPowerUp.initialize({
     'card-badges': function (t, opts) {
         console.log(opts)
-        
-        return[ 
-            {
-                dynamic: function(){
-                    return {
-                        text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
-                        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-                        color: 'green',
-                        refresh: 10 // in seconds
-                    }
-                    // t.cards("id").then(function (cardIds) {
-                    //     return cardIds.forEach(function (id) {
-                    //       Trello.get(`cards/${id.id}/list`, function (list) {
-                    //         console.log(list)
-                    //       })
-                    //     })
-                    // })
-                }
-            }
-        ]
 
-        // let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
-        // return t.card('name')
-        //     .get('name')
-        //     .then(function (cardName) {
-        //         console.log('We just loaded the card name for fun: ' + cardName);
-        //         return [{
-        //             // dynamic badges can have their function rerun
-        //             // after a set number of seconds defined by refresh.
-        //             // Minimum of 10 seconds.
-        //             dynamic: function () {
-        //                 // we could also return a Promise that resolves to
-        //                 // this as well if we needed to do something async first
-        //                 return {
-        //                     text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
-        //                     icon: './images/icon.svg',
-        //                     color: 'green',
-        //                     refresh: 10 // in seconds
-        //                 };
+        // return[ 
+        //     {
+        //         dynamic: function(){
+        //             return {
+        //                 text: 'FUCK',
+        //                 // icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+        //                 // color: 'green',
+        //                 // refresh: 10 // in seconds
         //             }
-        //         }, {
-        //             // its best to use static badges unless you need your
-        //             // badges to refresh you can mix and match between
-        //             // static and dynamic
-        //             text: 'Static',
-        //             icon: HYPERDEV_ICON, // for card front badges only
-        //             color: null
-        //         }];
-        //     });
+        //             // t.cards("id").then(function (cardIds) {
+        //             //     return cardIds.forEach(function (id) {
+        //             //       Trello.get(`cards/${id.id}/list`, function (list) {
+        //             //         console.log(list)
+        //             //       })
+        //             //     })
+        //             // })
+        //         }
+        //     }
+        // ]
+
+        let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
+        return t.card('name')
+            .get('name')
+            .then(function (cardName) {
+                console.log('We just loaded the card name for fun: ' + cardName);
+                return [{
+                    // dynamic badges can have their function rerun
+                    // after a set number of seconds defined by refresh.
+                    // Minimum of 10 seconds.
+                    dynamic: function () {
+                        // we could also return a Promise that resolves to
+                        // this as well if we needed to do something async first
+                        return {
+                            text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
+                            icon: './images/icon.svg',
+                            color: 'green',
+                            refresh: 10 // in seconds
+                        };
+                    }
+                }, {
+                    // its best to use static badges unless you need your
+                    // badges to refresh you can mix and match between
+                    // static and dynamic
+                    text: 'Static',
+                    icon: HYPERDEV_ICON, // for card front badges only
+                    color: null
+                }];
+            });
     },
     'board-buttons': function (t, opts) {
         return [{
