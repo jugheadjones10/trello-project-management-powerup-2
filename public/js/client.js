@@ -52,7 +52,7 @@ TrelloPowerUp.initialize({
                 {
                     dynamic: function(){
                         return {
-                            text: null,
+                            text: "Uck",
                             icon: null,
                             color: cardColor,
                             refresh: 10 // in seconds
