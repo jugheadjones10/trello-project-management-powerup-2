@@ -7,11 +7,11 @@ var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 TrelloPowerUp.initialize({
     'card-badges': function (t, opts) {
     
-        var listToColorMapper
+        var listToColorMapper = {}
         t.lists("name").then(function(names){
-            console.log(names)
-            for(var i = 0; i < names.length - 1; i++){
-                console.log(names[i])
+            for(var i = 0; i < names.length; i++){
+                var realName = names[i].name
+                listToColorMapper.realName = markerColors[i]
             }
             // listToColorMapper.names = markerColors
         })
@@ -22,12 +22,12 @@ TrelloPowerUp.initialize({
                 dynamic: function(){
                     return {
                         text: 'FUCK',
-                        icon: Trello.get(`cards/${opts.context.card}/list`, function(list){
-                            console.log(list.name)
-                            return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                        icon: null,
+                        color: Trello.get(`cards/${opts.context.card}/list`, function(list){
+                            var hey = list.name
+                            return listToColorMapper.hey
+                            //return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
                         }),
-
-                        color: 'green',
                         refresh: 10 // in seconds
                     }
                     // t.cards("id").then(function (cardIds) {
