@@ -17,7 +17,8 @@ TrelloPowerUp.initialize({
 
         })
 
-        function callback(cardColor){
+        var cardColor
+        function callback(){
             return[ 
                 {
                     dynamic: function(){
@@ -34,9 +35,9 @@ TrelloPowerUp.initialize({
         
         function callback2(callback){
             Trello.get(`cards/${opts.context.card}/list`, function(list){
-                var cardColor = listToColorMapper[list.name]
+                cardColor = listToColorMapper[list.name]
             })
-            return callback(cardColor)
+            return callback()
         }
 
         return callback2(callback)
