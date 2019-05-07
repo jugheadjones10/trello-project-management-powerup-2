@@ -182,24 +182,24 @@ TrelloPowerUp.initialize({
     }
     ,
 
-    "card-badges": function (t, options) {
-        return t.getAll("card", "shared")
-            .then(function (sharedData) {
-                if (Object.keys(sharedData).length > 0) {
-                    var { card: { shared: { startTime, stopTime } } } = sharedData
-                    if (startTime) {
-                        return [
-                            {
-                                text: numberOfDays(new Date("2018-10-15"))
-                            }
-                        ]
-                    } else {
-                        return []
-                    }
-                }
+    // "card-badges": function (t, options) {
+    //     return t.getAll("card", "shared")
+    //         .then(function (sharedData) {
+    //             if (Object.keys(sharedData).length > 0) {
+    //                 var { card: { shared: { startTime, stopTime } } } = sharedData
+    //                 if (startTime) {
+    //                     return [
+    //                         {
+    //                             text: numberOfDays(new Date("2018-10-15"))
+    //                         }
+    //                     ]
+    //                 } else {
+    //                     return []
+    //                 }
+    //             }
 
-            })
-    }
+    //         })
+    // }
 
 
 
