@@ -26,10 +26,10 @@ TrelloPowerUp.initialize({
                         var hey = list.name
                         //console.log(listToColorMapper[hey])
                         theColor = listToColorMapper[hey]
+                        console.log(theColor)
                         //return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
                     })
 
-                    console.log(theColor)
                     return {
                         text: 'FUCK',
                         icon: null,
