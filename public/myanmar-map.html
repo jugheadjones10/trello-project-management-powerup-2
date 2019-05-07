@@ -27,6 +27,14 @@
     //   })
     // })
 
+    t.cards("id").then(function (cardIds) {
+      cardIds.forEach(function (id) {
+        Trello.get(`cards/${id.id}/list`, function (list) {
+          console.log(list)
+        })
+      })
+    })
+
     function initMap() {
       var mapMarkersList = []
       var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -117,8 +125,10 @@
   </script>
 
 
-  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUapN3kozFMAp4SOwmpU4e6eVqDZD_DEU&callback=initMap"></script>
+  <script
+    src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUapN3kozFMAp4SOwmpU4e6eVqDZD_DEU&callback=initMap"></script>
 </body>
 
 </html>
