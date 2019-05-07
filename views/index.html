@@ -8,10 +8,27 @@
     <h1>Get your shit done</h1>
   
     <script src="https://p.trellocdn.com/power-up.min.js"></script>
+    <script src="https://trello.com/1/client.js?key=aa0f9cf4d2d738632836aa054dcdda43"></script>
+    <script>
+       window.Trello.authorize({
+        type: 'popup',
+        name: 'Getting Started Application',
+        scope: {
+          read: 'true',
+          write: 'true'
+        },
+        expiration: 'never',
+        success: function () {
+          console.log('Successful authentication')
+        },
+        error: function () {
+          console.log('Failed authentication')
+        }
+      })
+    </script>
     <script src="https://unpkg.com/moment"></script>
     <script src="./js/days.js"></script>
     <script src="./js/client.js"></script>
-    
     <!-- <script tyle="text/javascript">
       let projectName = window.location.hostname.slice(0, window.location.hostname.length-10)
       document.getElementById("readme").setAttribute("href", "https://glitch.com/edit/#!/" + projectName + "?path=README.md");
