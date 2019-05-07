@@ -13,7 +13,7 @@ TrelloPowerUp.initialize({
                 var realName = names[i].name
                 listToColorMapper[realName] = markerColors[i]
             }
-            // listToColorMapper.names = markerColors
+            console.log(listToColorMapper)
         })
 
 
