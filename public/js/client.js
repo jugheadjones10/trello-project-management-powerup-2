@@ -10,6 +10,8 @@ TrelloPowerUp.initialize({
         // var listToColorMapper
         // t.lists("name").get("name").then(function(names){
         //     console.log(names)
+        //     // for(var i = 0; i < ;)
+        //     // listToColorMapper.names = markerColors
         // })
 
 
@@ -95,7 +97,7 @@ TrelloPowerUp.initialize({
         // you can look through them and 'claim' any that you want to
         // include in your section.
 
-        var claimed = options.entries.filter(function (attachment) {
+        var claimed = options.entries.filter(function (attachment){
             return attachment.url.indexOf("https://www.google.com/maps/place/") === 0
         })
 
