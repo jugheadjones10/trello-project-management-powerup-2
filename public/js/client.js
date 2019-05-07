@@ -13,7 +13,7 @@ TrelloPowerUp.initialize({
                 var realName = names[i].name
                 listToColorMapper[realName] = markerColors[i]
             }
-            console.log(listToColorMapper)
+            //console.log(listToColorMapper)
 
         })
 
@@ -23,7 +23,7 @@ TrelloPowerUp.initialize({
                 dynamic: function(){
                     var theColor = Trello.get(`cards/${opts.context.card}/list`, function(list){
                         var hey = list.name
-                        console.log(listToColorMapper.hey)
+                        console.log(list)
                         return listToColorMapper.hey
                         //return 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
                     })
