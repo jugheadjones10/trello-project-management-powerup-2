@@ -27,13 +27,13 @@
     //   })
     // })
 
-    t.cards("id").then(function (cardIds) {
-      cardIds.forEach(function (id) {
-        Trello.get(`cards/${id.id}/list`, function (list) {
-          console.log(list)
-        })
-      })
-    })
+    // t.cards("id").then(function (cardIds) {
+    //   cardIds.forEach(function (id) {
+    //     Trello.get(`cards/${id.id}/list`, function (list) {
+    //       console.log(list)
+    //     })
+    //   })
+    // })
 
     function initMap() {
       var mapMarkersList = []
@@ -64,18 +64,25 @@
       t.cards("id").then(function (ids) {
         ids.forEach(function (id) {
           Trello.get(`cards/${id.id}/pluginData`, function (pluginData) {
-            var cardCoords = JSON.parse(pluginData[0].value).coords
-            if (cardCoords) {
-              var marker = new google.maps.Marker(
-                {
-                  position: {
-                    lng: Number(cardCoords.longitude),
-                    lat: Number(cardCoords.latitude)
-                  },
-                  map: map
+            Trello.get(`cards/${id.id}/list`, function (list) {
+              t.get("board", "shared", "listToColorMapper").then(function (mapper) {
+                var cardCoords = JSON.parse(pluginData[0].value).coords
+                if (cardCoords) {
+                  var marker = new google.maps.Marker(
+                    {
+                      position: {
+                        lng: Number(cardCoords.longitude),
+                        lat: Number(cardCoords.latitude)
+                      },
+                      map: map,
+                      icon: {
+                        url: `http://maps.google.com/mapfiles/ms/icons/${mapper[list.name]}-dot.png`
+                      }
+                    }
+                  )
                 }
-              )
-            }
+              })
+            })
           })
         })
       })
