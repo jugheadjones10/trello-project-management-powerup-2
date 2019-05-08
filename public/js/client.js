@@ -41,6 +41,19 @@ TrelloPowerUp.initialize({
                 })
             },
             condition: 'edit'
+        },
+        {
+            text: 'Calendar',
+            callback: function (t, options) {
+                t.modal({
+                    url: './myanmar-calendar.html',
+                    accentColor: '#F2D600',
+                    fullscreen: true,
+                    callback: () => console.log('Goodbye.'),
+                    title: "Project timelines overview",
+                })
+            },
+            condition: 'edit'
         }]
     },
 
