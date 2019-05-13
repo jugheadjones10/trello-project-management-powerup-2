@@ -126,7 +126,8 @@
             appendContentShower(calendars[i].summary)
           }
 
-          window.location.href = "./my-calendar.html";
+          //window.location.href = "./my-calendar.html";
+          document.getElementById('contentShower').appendChild("<iframe  src='https://boiling-ridge-19956.herokuapp.com/?url=https://calendar.google.com/calendar/r/month/2019/5/1' width='100%' height='100%'></iframe>")
         })
       }
 
