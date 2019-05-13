@@ -19,22 +19,6 @@
   <script>
     var t = window.TrelloPowerUp.iframe()
 
-    // t.cards("id").then(function(cardIds){
-    //   cardIds.forEach(function(id){
-    //     Trello.get(`cards/${id.id}/actions?filter=all`, function(actions){
-    //       console.log(actions)
-    //     })
-    //   })
-    // })
-
-    // t.cards("id").then(function (cardIds) {
-    //   cardIds.forEach(function (id) {
-    //     Trello.get(`cards/${id.id}/list`, function (list) {
-    //       console.log(list)
-    //     })
-    //   })
-    // })
-
     function initMap() {
       var mapMarkersList = []
       var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -87,48 +71,6 @@
         })
       })
     }
-
-      // t.board("id").then(function (result) {
-      //   Trello.get(`boards/${result.id}/cards`,
-      //     function (cardsList) {
-      //       cardsList.forEach(function (card) {
-      //         Trello.get(`cards/${card.id}/pluginData`,
-      //           function (pluginData) {
-      //             var cardCoords = JSON.parse(pluginData[0].value).coords
-      //             if (cardCoords) {
-      //               var marker = new google.maps.Marker(
-      //                 {
-      //                   position: {
-      //                     lng: Number(cardCoords.longitude),
-      //                     lat: Number(cardCoords.latitude)
-      //                   },
-      //                   map: map
-      //                 })
-
-
-                    // mapMarkersList.push(
-                    //   {lng: Number(cardCoords.longitude),  lat: Number(cardCoords.latitude)}
-                    // )
-
-                    // mapMarkersList.push(
-                    //   new google.maps.Marker({
-                    //     position: {  
-                    //       lng: Number(cardCoords.longitude),  
-                    //       lat: Number(cardCoords.latitude)
-                    //     },
-                    //     label: "a"
-                    //   })
-                    // )
-
-    //               }
-    //             }
-    //           )
-    //         })
-
-
-    //       })
-    //   })
-    // }
   </script>
 
 
