@@ -13,6 +13,8 @@
 
     <pre id="content" style="white-space: pre-wrap"></pre>
 
+    <div id="contentShower"></div>
+
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
       var CLIENT_ID = '420703255630-1lru95p6370h8vs8i6cjq2v9oq2b9mga.apps.googleusercontent.com'
@@ -106,11 +108,22 @@
        * appropriate message is printed.
        */
 
+
+
+      function appendContentShower(message){
+        var conShower = document.getElementById('contentShower')
+        var textContent = document.createTextNode(message + '\n')
+        conShower.appendChild(textContent)
+      }
+
       function listUserCalendars(){
         gapi.client.calendar.calendarList.list({
 
         }).then(function(response){
-          console.log(response.items)
+          console.log(response.result.items)
+          for(hey in response.result.items){
+            appendContentShower(hey.summary)
+          }
         })
       }
 
