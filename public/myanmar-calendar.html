@@ -121,9 +121,10 @@
 
         }).then(function(response){
           console.log(response.result.items)
-          for(hey in response.result.items){
-            console.log(hey)
-            appendContentShower(hey.summary)
+          var calendars = response.result.items
+          for(var i = 0; i < calendars.length; i++){
+            console.log(calendars[i])
+            appendContentShower(calendar[i].summary)
           }
         })
       }
