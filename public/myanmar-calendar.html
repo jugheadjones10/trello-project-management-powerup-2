@@ -122,18 +122,11 @@
         }).then(function(response){
           console.log(response.result.items)
           for(hey in response.result.items){
+            console.log(hey)
             appendContentShower(hey.summary)
           }
         })
       }
-
-
-
-
-
-
-
-
 
 
 
