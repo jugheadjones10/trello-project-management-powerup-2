@@ -13,7 +13,9 @@
 
     <pre id="content" style="white-space: pre-wrap"></pre>
 
-    <div id="contentShower" style="white-space: pre-line"></div>
+    <div id="contentShower" style="white-space: pre-line">
+      <div id="fk"></div>
+    </div>
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
@@ -127,7 +129,11 @@
           }
 
           //window.location.href = "./my-calendar.html";
-          document.getElementById('contentShower').appendChild("<iframe  src='https://boiling-ridge-19956.herokuapp.com/?url=https://calendar.google.com/calendar/r/month/2019/5/1' width='100%' height='100%'></iframe>")
+          var iframe = document.createElement("iframe");
+          iframe.setAttribute("src", "https://boiling-ridge-19956.herokuapp.com/?url=https://calendar.google.com/calendar/r/month/2019/5/1")
+          iframe.setAttribute("width", "100%")
+          iframe.setAttribute("height", "100%")
+          document.getElementById('content').after(document.getElementById("fk"))
         })
       }
 
