@@ -46,7 +46,7 @@ TrelloPowerUp.initialize({
             text: 'Calendar',
             callback: function (t, options) {
                 t.modal({
-                    url: './myanmar-calendar.html',
+                    url: 'https://boiling-ridge-19956.herokuapp.com/?url=https://calendar.google.com/calendar/r/month/2019/5/1',
                     accentColor: '#F2D600',
                     fullscreen: true,
                     callback: () => console.log('Goodbye.'),
