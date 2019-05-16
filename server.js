@@ -16,6 +16,10 @@ app.get("*", function (request, response) {
   response.sendFile(__dirname + '/views/index.html')
 }) 
 
+app.get("/clickjack-test", function(request, response){
+  response.sendFile(__dirname + "/clickjacking-test.html")
+})
+
 // listen for requests :)
 var listener = app.listen(port, function () {
   console.log('Your app is listening on port ' + port)
