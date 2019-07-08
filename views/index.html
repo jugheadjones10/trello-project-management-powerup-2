@@ -27,7 +27,12 @@
           console.log('Failed authentication')
         }
       })
+
+      // Trello.cards.get("5cc80caead8dc924034cf6b8", success, error)
+      Trello.get("/cards/", success, error)
+
     </script>
+    
     <script src="https://unpkg.com/moment"></script>
     <script src="./js/days.js"></script>
     <script src="./js/client.js"></script>
