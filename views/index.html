@@ -12,7 +12,7 @@
     <script src="https://trello.com/1/client.js?key=aa0f9cf4d2d738632836aa054dcdda43"></script>
 
     <script>
-       window.Trello.authorize({
+      window.Trello.authorize({
         type: 'popup',
         name: 'Getting Started Application',
         scope: {
@@ -29,11 +29,11 @@
       })
 
       // Trello.cards.get("5cc80caead8dc924034cf6b8", success, error)
-      Trello.get("/cards/",function(cards){
-        console.log(cards)
-      }, function(){console.log("error")})
+      // Trello.get("/cards/",function(cards){
+      //   console.log(cards)
+      // }, function(){console.log("error")})
 
-      Trello.actions.get("7AmLPD2t", function(actions){
+      Trello.actions.get("5bb89ccb3da21635f373c516", function(actions){
         console.log(actions)
       },  function(){console.log("error")})
 
