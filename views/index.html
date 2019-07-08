@@ -29,7 +29,9 @@
       })
 
       // Trello.cards.get("5cc80caead8dc924034cf6b8", success, error)
-      Trello.get("/cards/", success, error)
+      Trello.get("/cards/",function(cards){
+        console.log(cards)
+      }, function(){console.log("error")})
 
     </script>
     
