@@ -16,6 +16,7 @@ TrelloPowerUp.initialize({
         }).then(function(){
             t.set("board", "shared", "listToColorMapper", listToColorMapper)
         })
+        // Mapping list names to a color in the object listToColorMapper. Object saved to board-level key "listToColorMapper"
        
         return [{
             text: 'Myanmar Map',
@@ -46,7 +47,7 @@ TrelloPowerUp.initialize({
             text: 'Calendar',
             callback: function (t, options) {
                 t.modal({
-                    url: './myanmar-calendar.html',
+                    url: './myanmar-calendar-new.html',
                     accentColor: '#F2D600',
                     fullscreen: true,
                     callback: () => console.log('Goodbye.'),
