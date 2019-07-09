@@ -188,7 +188,7 @@
   <script>
 
     var originalWindow = window.opener
-    // var t = originalWindow.TrelloPowerUp.iframe()
+    var t = window.TrelloPowerUp.iframe()
     window.Trello.authorize({
       type: 'popup',
       name: 'Getting Started Application',
@@ -211,6 +211,7 @@
 
       // t.board('id').then(function (board) {
       //   console.log(board)
+      // Lesson learnt - t doesn't work 
 
         // Trello.get('/boards/5bb89ccb3da21635f373c516/actions?key=aa0f9cf4d2d738632836aa054dcdda43&token=2741b4a30a0f215a493f1a3bc0d21e415cda8c2f7541611635ca6dbfd878ae49', function (actions) {
         Trello.get(`/boards/${originalWindow.boardId}/actions`, function (actions) {
