@@ -1,10 +1,12 @@
+
+import trelloToGoogle from "./trello-to-googlemaps.js"
+
 var Promise = TrelloPowerUp.Promise
 var BLACK_ROCKET_ICON = 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9e08a%2Frocket-ship.png?1494946700421'
 
 //Add a color scheme array
 var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 
-import trelloToGoogle from "./trello-to-googlemaps.js"
 
 TrelloPowerUp.initialize({
     'board-buttons': function (t, opts) {
