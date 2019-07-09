@@ -211,7 +211,7 @@
 
       // t.board('id').then(function (board) {
       //   console.log(board)
-        Trello.get(`/boards/5bb89ccb3da21635f373c516/actions`, function (actions) {
+        Trello.get('/boards/5bb89ccb3da21635f373c516/actions', function (actions) {
           console.log(actions)
           for (var i = 0; i < actions.length; i++) {
             if (actions[i].data.old.hasOwnProperty("due")) {
