@@ -20,7 +20,7 @@ TrelloPowerUp.initialize({
 
         t.board('id').then(function(board){
             console.log(board)
-            Trello.get(`/boards/${board}/actions`, function(actions){
+            Trello.get(`/boards/${board.id}/actions`, function(actions){
                 console.log(actions)
             }, function(){
                 console.log("error")
