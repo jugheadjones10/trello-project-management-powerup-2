@@ -27,10 +27,16 @@
           console.log('Failed authentication')
         }
       })
+      
+      var t = window.TrelloPowerUp.iframe()
 
       t.card("5cc80caead8dc924034cf6b8").then(function(card){
         console.log(card)
       })
+      t.board('all').then(function(board){
+        console.log(board)
+      })
+    
       // Trello.get("/boards/{id}/actions", success, error)
 
     </script>
