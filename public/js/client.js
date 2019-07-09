@@ -15,12 +15,12 @@ TrelloPowerUp.initialize({
         // returns { authorized: false }
         // in this case we would open a popup
         heya(t)
-        
+
         return t.popup({
           title: 'Authorize connection with google calendar',
           url: '../myanmar-calendar.html',
           height: 140,
-        });
+        })
     },
 
     'board-buttons': function (t, opts) {
