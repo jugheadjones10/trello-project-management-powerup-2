@@ -18,11 +18,13 @@ TrelloPowerUp.initialize({
         })
         // Mapping list names to a color in the object listToColorMapper. Object saved to board-level key "listToColorMapper"
 
-        t.card("5cc80caead8dc924034cf6b8").then(function(card){
-            console.log(card)
-        })
-        t.board('all').then(function(board){
+        t.board('id').then(function(board){
             console.log(board)
+            Trello.get(`/boards/${board}/actions`, function(actions){
+                console.log(actions)
+            }, function(){
+                console.log("error")
+            })
         })
 
        
