@@ -52,6 +52,9 @@ TrelloPowerUp.initialize({
         {
             text: "trello-to-google",
             callback: function(t, options){
+                t.board('id').then(function (board) {
+                    window.boardId = board.id
+                })
                 window.open("../myanmar-calendar.html", "trelloToGoogle", "width=400px,height=200px,resizable")
             },
             condition: 'edit'
