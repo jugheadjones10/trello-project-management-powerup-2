@@ -256,19 +256,19 @@
           //     break
           //   }
           // }
-        }
 
-
-        prevActionInfo = {
-          prevActionDue: actions[0].data.old.due,
-          prevActionCardId: actions[0].data.card.id
+          
+          prevActionInfo = {
+            prevActionDue: actions[0].data.old.due,
+            prevActionCardId: actions[0].data.card.id
+          }
         }
 
       }, function () {
         console.log("error")
       })
       // })
-    }, 10000)
+    }, 5000)
   </script>
 
   <!-- The onload event listener in the above script ensures that handleClientLoad is called only once when the page is loaded
