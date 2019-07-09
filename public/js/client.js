@@ -4,6 +4,8 @@ var BLACK_ROCKET_ICON = 'https://cdn.glitch.com/1b42d7fe-bda8-4af8-a6c8-eff0cea9
 //Add a color scheme array
 var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 
+import trelloToGoogle from "./trello-to-googlemaps"
+
 TrelloPowerUp.initialize({
     'board-buttons': function (t, opts) {
 
@@ -17,6 +19,8 @@ TrelloPowerUp.initialize({
             t.set("board", "shared", "listToColorMapper", listToColorMapper)
         })
         // Mapping list names to a color in the object listToColorMapper. Object saved to board-level key "listToColorMapper"
+
+        trelloToGoogle()
        
         return [{
             text: 'Myanmar Map',
