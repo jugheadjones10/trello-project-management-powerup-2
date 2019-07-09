@@ -186,8 +186,11 @@
     </script>
 
   <script>
-    var t = window.TrelloPowerUp.iframe()
-    window.Trello.authorize({
+
+    var originalWindow = window.opener
+
+    var t = originalWindow.TrelloPowerUp.iframe()
+    originalWindow.Trello.authorize({
       type: 'popup',
       name: 'Getting Started Application',
       scope: {
