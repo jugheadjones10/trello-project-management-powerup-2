@@ -210,7 +210,7 @@
         Trello.get(`/boards/${board.id}/actions`, function (actions) {
           console.log(actions)
           for (var i = 0; i < actions.length; i++) {
-            if (actions[i].data.old.due) {
+            if (actions[i].data.old.hasOwnProperty("due")) {
               // new date is in actions[i].data.card.due
               var event = {
                 'summary': actions[i].data.card.name,
