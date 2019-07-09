@@ -2,11 +2,32 @@
 <html>
 
 <head>
+    
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://trello.com/1/client.js?key=aa0f9cf4d2d738632836aa054dcdda43"></script>
 
 </head>
 
 <body>
     <script>
+         var t = window.TrelloPowerUp.iframe()
+    window.Trello.authorize({
+      type: 'popup',
+      name: 'Getting Started Application',
+      scope: {
+        read: 'true',
+        write: 'true'
+      },
+      expiration: 'never',
+      success: function () {
+        console.log('Successful authentication')
+      },
+      error: function () {
+        console.log('Failed authentication')
+      }
+    })
+    
         setInterval(function () {
             console.log("fuck this shit")
             t.board('id').then(function (board) {
