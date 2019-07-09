@@ -203,15 +203,16 @@
       }
     })
 
-    if(!iframe){
-      var iframe = document.createElement("iframe")
-      iframe.setAttribute("src", "./trello-to-google-iframe.html")
-      iframe.setAttribute("width", "50px")
-      iframe.setAttribute("height", "50px")
-      window.location.href="./trello-to-google-iframe.html"
-    }else{
-      window.location.href = "./trello-to-google-iframe.html"
-    }
+    window.open("./trello-to-google-iframe.html")
+    // if(!iframe){
+    //   var iframe = document.createElement("iframe")
+    //   iframe.setAttribute("src", "./trello-to-google-iframe.html")
+    //   iframe.setAttribute("width", "50px")
+    //   iframe.setAttribute("height", "50px")
+    //   window.location.href="./trello-to-google-iframe.html"
+    // }else{
+    //   window.location.href = "./trello-to-google-iframe.html"
+    // }
 
 
     // setInterval(function () {
