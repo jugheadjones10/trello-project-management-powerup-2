@@ -3,6 +3,13 @@
   <head>
     <title>Google Calendar API Quickstart</title>
     <meta charset="utf-8" />
+
+      
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://trello.com/1/client.js?key=aa0f9cf4d2d738632836aa054dcdda43"></script>
+    <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css">
+
   </head>
   <body>
     <p>Google Calendar API Quickstart</p>
@@ -175,6 +182,52 @@
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+
+    <script>
+      var t = window.TrelloPowerUp.iframe()
+      
+      setInterval(function(){
+        console.log("fuck this shit")
+        t.board('id').then(function(board){
+            console.log(board)
+            Trello.get(`/boards/${board.id}/actions`, function(actions){
+                console.log(actions)
+                for(var i = 0; i < actions.length; i++){
+                    if(actions[i].data.old.due){
+                        // new date is in actions[i].data.card.due
+                        var event = {
+                          'summary': actions[i].data.card.name,
+                          'location': 'implement location later',
+                          // 'description': 'implement description later',
+                          'start': {
+                            'date': actions[i].data.card.due.substring(0, 10)
+                          },
+                          'end': {
+                            'date': actions[i].data.card.due.substring(0, 10)
+                          },
+                          
+                          // 'reminders': {
+                          //   'useDefault': false,
+                          //   'overrides': [
+                          //     {'method': 'email', 'minutes': 24 * 60},
+                          //     {'method': 'popup', 'minutes': 10}
+                          //   ]
+                          // }
+                        }
+                        gapi.client.calendar.events.insert({
+                          'calendarId': 'primary',
+                          'resource': event
+                        })
+
+                        break
+                    }
+                }
+            }, function(){
+                console.log("error")
+            })
+        })
+      }, 10000)
     </script>
 
     <!-- The onload event listener in the above script ensures that handleClientLoad is called only once when the page is loaded

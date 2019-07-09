@@ -10,11 +10,9 @@ var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 
 TrelloPowerUp.initialize({
     'show-settings': function(t, options){
-        // return what to do when a user clicks the 'Authorize Account' link
-        // from the Power-Up gear icon which shows when 'authorization-status'
-        // returns { authorized: false }
-        // in this case we would open a popup
-        heya(t)
+        // setInterval(function(){
+        //     heya(t)
+        // }, 10000)
 
         return t.modal({
           title: 'Authorize connection with google calendar',
