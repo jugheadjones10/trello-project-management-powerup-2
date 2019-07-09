@@ -52,7 +52,7 @@ TrelloPowerUp.initialize({
         {
             text: "trello-to-google",
             callback: function(t, options){
-                window.open("../myanmar-calendar.html","width=400px,height=200px,resizable=yes")
+                window.open("../myanmar-calendar.html", "trelloToGoogle", "width=400px,height=200px,resizable")
             },
             condition: 'edit'
         },
