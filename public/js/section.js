@@ -1,4 +1,4 @@
-var t = window.TrelloPowerUp.iframe();
+var t = window.TrelloPowerUp.iframe()
 
 // you can access arguments passed to your iframe like so
 var arg = t.arg('arg');

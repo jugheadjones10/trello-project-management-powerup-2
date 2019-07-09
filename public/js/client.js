@@ -17,16 +17,6 @@ TrelloPowerUp.initialize({
             t.set("board", "shared", "listToColorMapper", listToColorMapper)
         })
         // Mapping list names to a color in the object listToColorMapper. Object saved to board-level key "listToColorMapper"
-
-        t.board('id').then(function(board){
-            console.log(board)
-            Trello.get(`/boards/${board.id}/actions`, function(actions){
-                console.log(actions)
-            }, function(){
-                console.log("error")
-            })
-        })
-
        
         return [{
             text: 'Myanmar Map',
