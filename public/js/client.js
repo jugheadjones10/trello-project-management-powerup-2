@@ -54,8 +54,8 @@ TrelloPowerUp.initialize({
             callback: function(t, options){
                 var iframe = document.createElement("iframe")
                 iframe.setAttribute("src", "../myanmar-calendar.html")
-                iframe.setAttribute("width", "0")
-                iframe.setAttribute("height", "0")
+                iframe.setAttribute("width", "30px")
+                iframe.setAttribute("height", "30px")
             },
             condition: 'edit'
         },
