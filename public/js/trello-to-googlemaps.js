@@ -1,5 +1,5 @@
 
-function heya(){
+export default function(){
     t.board('id').then(function(board){
         console.log(board)
         Trello.get(`/boards/${board.id}/actions`, function(actions){
@@ -14,5 +14,3 @@ function heya(){
         })
     })
 }
-
-export default heya
