@@ -36,7 +36,7 @@ TrelloPowerUp.initialize({
         //     })
         // })
 
-        heya()
+        heya(t)
        
         return [{
             text: 'Myanmar Map',
