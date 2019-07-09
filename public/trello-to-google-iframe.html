@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <script>
+        setInterval(function () {
+            console.log("fuck this shit")
+            t.board('id').then(function (board) {
+                console.log(board)
+                Trello.get(`/boards/${board.id}/actions`, function (actions) {
+                    console.log(actions)
+                    for (var i = 0; i < actions.length; i++) {
+                        if (actions[i].data.old.hasOwnProperty("due")) {
+                            // new date is in actions[i].data.card.due
+                            var event = {
+                                'summary': actions[i].data.card.name,
+                                'location': 'implement location later',
+                                // 'description': 'implement description later',
+                                'start': {
+                                    'date': actions[i].data.card.due.substring(0, 10)
+                                },
+                                'end': {
+                                    'date': actions[i].data.card.due.substring(0, 10)
+                                },
+                            }
+                            gapi.client.calendar.events.insert({
+                                'calendarId': 'primary',
+                                'resource': event
+                            }).then(function (response) {
+                                console.log(response)
+                            })
+
+                            break
+                        }
+                    }
+                }, function () {
+                    console.log("error")
+                })
+            })
+        }, 10000)
+
+    </script>
+</body>
+
+</html>
