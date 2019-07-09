@@ -186,6 +186,21 @@
 
     <script>
       var t = window.TrelloPowerUp.iframe()
+      window.Trello.authorize({
+        type: 'popup',
+        name: 'Getting Started Application',
+        scope: {
+          read: 'true',
+          write: 'true'
+        },
+        expiration: 'never',
+        success: function () {
+          console.log('Successful authentication')
+        },
+        error: function () {
+          console.log('Failed authentication')
+        }
+      })
       
       setInterval(function(){
         console.log("fuck this shit")
