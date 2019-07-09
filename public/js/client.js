@@ -9,27 +9,27 @@ var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 
 
 TrelloPowerUp.initialize({
-    'show-settings': function(t, options){
-        // setInterval(function(){
-        //     heya(t)
-        // }, 10000)
+    // 'show-settings': function (t, options) {
+    //     // setInterval(function(){
+    //     //     heya(t)
+    //     // }, 10000)
 
-        return t.modal({
-          title: 'Authorize connection with google calendar',
-          url: '../myanmar-calendar.html',
-          fullscreen: true
-        })
-    },
+    //     return t.modal({
+    //         title: 'Authorize connection with google calendar',
+    //         url: '../myanmar-calendar.html',
+    //         fullscreen: true
+    //     })
+    // },
 
     'board-buttons': function (t, opts) {
 
         var listToColorMapper = {}
-        t.lists("name").then(function(names){
-            for(var i = 0; i < names.length; i++){
+        t.lists("name").then(function (names) {
+            for (var i = 0; i < names.length; i++) {
                 var realName = names[i].name
                 listToColorMapper[realName] = markerColors[i]
             }
-        }).then(function(){
+        }).then(function () {
             t.set("board", "shared", "listToColorMapper", listToColorMapper)
         })
         // Mapping list names to a color in the object listToColorMapper. Object saved to board-level key "listToColorMapper"
@@ -47,8 +47,19 @@ TrelloPowerUp.initialize({
         //         console.log("error")
         //     })
         // })
-       
-        return [{
+
+        return [
+        {
+            text: "trello-to-google",
+            callback: function(t, options){
+                var iframe = document.createElement("iframe")
+                iframe.setAttribute("src", "../myanmar-calendar.html")
+                iframe.setAttribute("width", "0")
+                iframe.setAttribute("height", "0")
+            },
+            condition: 'edit'
+        },
+        {
             text: 'Myanmar Map',
             callback: function (t, options) {
                 // var boardName
@@ -91,10 +102,10 @@ TrelloPowerUp.initialize({
     'card-badges': function (t, opts) {
 
         var cardColor
-        function callback(){
-            return[ 
+        function callback() {
+            return [
                 {
-                    dynamic: function(){
+                    dynamic: function () {
                         return {
                             text: "Uck",
                             icon: null,
@@ -103,12 +114,12 @@ TrelloPowerUp.initialize({
                         }
                     }
                 }
-            ]    
+            ]
         }
-        
-        function callback2(callback){
-            Trello.get(`cards/${opts.context.card}/list`, function(list){
-                t.get("board", "shared", "listToColorMapper").then(function(mapper){
+
+        function callback2(callback) {
+            Trello.get(`cards/${opts.context.card}/list`, function (list) {
+                t.get("board", "shared", "listToColorMapper").then(function (mapper) {
                     cardColor = mapper[list.name]
                 })
             })
@@ -116,7 +127,7 @@ TrelloPowerUp.initialize({
         }
 
         return callback2(callback)
-    
+
         // let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
         // return t.card('name')
         //     .get('name')
@@ -152,7 +163,7 @@ TrelloPowerUp.initialize({
         // you can look through them and 'claim' any that you want to
         // include in your section.
 
-        var claimed = options.entries.filter(function (attachment){
+        var claimed = options.entries.filter(function (attachment) {
             return attachment.url.indexOf("https://www.google.com/maps/place/") === 0
         })
 
