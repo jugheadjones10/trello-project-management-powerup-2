@@ -52,10 +52,7 @@ TrelloPowerUp.initialize({
         {
             text: "trello-to-google",
             callback: function(t, options){
-                var iframe = document.createElement("iframe")
-                iframe.setAttribute("src", "../myanmar-calendar.html")
-                iframe.setAttribute("width", "30px")
-                iframe.setAttribute("height", "30px")
+                window.open("../myanmar-calendar.html","width=400px,height=200px,resizable=yes")
             },
             condition: 'edit'
         },
