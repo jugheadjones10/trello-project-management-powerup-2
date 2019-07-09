@@ -226,8 +226,8 @@
         // AND IF latest action is NOT of the same card id as the previous action
         // UNLESS old due date is different
 
-        if ((actions[0].data.old.hasOwnProperty("due") && actions[0].data.card.id != prevActionInfo.prevActionCardId && actions[0].data.card.due) ||
-            (actions[0].data.old.hasOwnProperty("due") && actions[0].data.card.id == prevActionInfo.prevActionCardId && actions[0].data.old.due != prevActionInfo.prevActionDue && actions[0].data.card.due)
+        if ((actions[0].data.old && actions[0].data.card.id != prevActionInfo.prevActionCardId && actions[0].data.card.due) ||
+            (actions[0].data.old && actions[0].data.card.id == prevActionInfo.prevActionCardId && actions[0].data.old.due != prevActionInfo.prevActionDue && actions[0].data.card.due)
             
             ){
 
