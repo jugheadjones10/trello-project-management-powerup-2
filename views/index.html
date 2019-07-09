@@ -28,14 +28,10 @@
         }
       })
 
-      // Trello.cards.get("5cc80caead8dc924034cf6b8", success, error)
-      // Trello.get("/cards/",function(cards){
-      //   console.log(cards)
-      // }, function(){console.log("error")})
-
-      Trello.actions.get("5bb89ccb3da21635f373c516", function(actions){
-        console.log(actions)
-      },  function(){console.log("error")})
+      t.card("5cc80caead8dc924034cf6b8").then(function(card){
+        console.log(card)
+      })
+      // Trello.get("/boards/{id}/actions", success, error)
 
     </script>
     
