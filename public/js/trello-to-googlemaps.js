@@ -1,5 +1,3 @@
-
-
 export default function(t){
     console.log("fuck this shit")
     t.board('id').then(function(board){

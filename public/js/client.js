@@ -19,7 +19,7 @@ TrelloPowerUp.initialize({
         return t.popup({
           title: 'Authorize connection with google calendar',
           url: '../myanmar-calendar.html',
-          height: 140,
+          height: 184,
         })
     },
 
