@@ -231,19 +231,19 @@
             
             ){
 
-          for (var i = 0; i < actions.length; i++) {
-            if (actions[i].data.old.hasOwnProperty("due")) {
+          // for (var i = 0; i < actions.length; i++) {
+          //   if (actions[i].data.old.hasOwnProperty("due")) {
 
               // new date is in actions[i].data.card.due
               var event = {
-                'summary': actions[i].data.card.name,
+                'summary': actions[0].data.card.name,
                 'location': 'implement location later',
                 // 'description': 'implement description later',
                 'start': {
-                  'date': actions[i].data.card.due.substring(0, 10)
+                  'date': actions[0].data.card.due.substring(0, 10)
                 },
                 'end': {
-                  'date': actions[i].data.card.due.substring(0, 10)
+                  'date': actions[0].data.card.due.substring(0, 10)
                 },
               }
               gapi.client.calendar.events.insert({
@@ -253,9 +253,9 @@
                 console.log(response)
               })
 
-              break
-            }
-          }
+          //     break
+          //   }
+          // }
         }
 
 
