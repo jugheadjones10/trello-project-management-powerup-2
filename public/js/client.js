@@ -9,6 +9,20 @@ var markerColors = ["yellow", "green", "blue", "purple", "pink", "red"]
 
 
 TrelloPowerUp.initialize({
+    'show-authorization': function(t, options){
+        // return what to do when a user clicks the 'Authorize Account' link
+        // from the Power-Up gear icon which shows when 'authorization-status'
+        // returns { authorized: false }
+        // in this case we would open a popup
+        heya(t)
+        
+        return t.popup({
+          title: 'Authorize connection with google calendar',
+          url: '../myanmar-calendar.html',
+          height: 140,
+        });
+    },
+
     'board-buttons': function (t, opts) {
 
         var listToColorMapper = {}
@@ -35,8 +49,6 @@ TrelloPowerUp.initialize({
         //         console.log("error")
         //     })
         // })
-
-        heya(t)
        
         return [{
             text: 'Myanmar Map',

@@ -2,6 +2,15 @@ var express = require('express')
 var cors = require('cors')
 var request = require('request')
 
+//////////////////////////////////////
+const fs = require('fs')
+const readline = require('readline')
+const {google} = require('googleapis')
+// Dependencies required for google map api
+
+// import indexCode from "./index.js"
+// indexCode()
+
 var app = express()
 var port = process.env.PORT
 
