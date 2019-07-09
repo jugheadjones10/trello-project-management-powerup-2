@@ -188,8 +188,7 @@
   <script>
 
     var originalWindow = window.opener
-
-    var t = originalWindow.TrelloPowerUp.iframe()
+    // var t = originalWindow.TrelloPowerUp.iframe()
     originalWindow.Trello.authorize({
       type: 'popup',
       name: 'Getting Started Application',
@@ -208,9 +207,11 @@
 
     setInterval(function () {
       console.log("fuck this shit")
-      t.board('id').then(function (board) {
-        console.log(board)
-        Trello.get(`/boards/${board.id}/actions`, function (actions) {
+
+
+      // t.board('id').then(function (board) {
+      //   console.log(board)
+        Trello.get(`/boards/5bb89ccb3da21635f373c516/actions`, function (actions) {
           console.log(actions)
           for (var i = 0; i < actions.length; i++) {
             if (actions[i].data.old.hasOwnProperty("due")) {
@@ -239,7 +240,7 @@
         }, function () {
           console.log("error")
         })
-      })
+      // })
     }, 10000)
   </script>
 
