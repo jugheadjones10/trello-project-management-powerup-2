@@ -108,7 +108,7 @@ TrelloPowerUp.initialize({
                 url: t.signUrl('../costs-recording.html'),
                 height: 500
             }
-        };
+        }
     },
 
     'card-badges': function (t, opts) {
