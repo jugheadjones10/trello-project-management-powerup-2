@@ -20,15 +20,18 @@ TrelloPowerUp.initialize({
     // },
 
     'card-back-section': function (t, options) {
-        return {
-            title: 'Costs recording',
-            icon: GRAY_ICON, // Must be a gray icon, colored icons not allowed.
-            content: {
-                type: 'iframe',
-                url: t.signUrl('../costs-recording.html'),
-                height: 230
+        return [
+            {
+                title: 'Costs recording',
+                icon: GRAY_ICON, // Must be a gray icon, colored icons not allowed.
+                content: {
+                    type: 'iframe',
+                    url: t.signUrl('../costs-recording.html'),
+                    height: 230
+                }
             }
-        }
+
+        ]
     },
 
     'board-buttons': function (t, opts) {
