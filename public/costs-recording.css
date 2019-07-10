@@ -1,0 +1,22 @@
+.label-row{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.item-name{
+    flex-grow: 2;
+}
+
+.item-cost{
+    flex-grow: 1;
+}
+
+.item-quantity{
+    flex-grow: 1;
+}
+
+.total-cost{
+    flex-grow: 1;
+}
