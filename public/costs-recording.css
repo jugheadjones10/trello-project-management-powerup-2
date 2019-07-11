@@ -1,38 +1,44 @@
-/******** Cost row **********/
-.label-row{
-    height: 50px;
+.grid-daddy{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 30px 30px;
+    grid-template-areas: 
+    "name cost quantity total-cost"
+    "row1 row1 row1 row1";
+}
+
+.name, .cost, .quantity, .total-cost{
+    line-height: 30px;
+    text-align: center;
+}   
+
+.name{
+    grid-area: name;
+}
+
+.cost{
+    grid-area: cost;
+}
+
+.quantity{
+    grid-area: quantity;
+}
+
+.total-cost{
+    grid-area: total-cost;
+}
+
+
+/* To counter trello styling which gives input a margin-bottom of 1em */
+/* The .grid-daddy selector is added to give the below style precedence over trello's styles */
+.grid-daddy select, 
+.grid-daddy input{
+    margin-bottom: 0px;
+}
+
+.row1{
+    grid-area: row1;
+
     display: flex;
     flex-direction: row;
-    align-items: center;
-}
-
-/****** All divs in each cost row *******/
-.label-row > div{
-    height: 30px;
-    border: solid brown 0.5px;
-}
-
-/* **All inputs and selects in each cost row */
-.label-row > div > input, .label-row > div > select{
-    height: 100%;
-}
- 
-/* ********Item name column*********** */
-.item-name{
-    flex-grow: 2;
-}
-
-/* ***********Item cost column******* */
-.item-cost{
-    flex-grow: 1;
-}
-
-/* ********Item quantity column******* */
-.item-quantity{
-    flex-grow: 1;
-}
-
-/* **********Total cost column******* */
-.total-cost{
-    flex-grow: 1;
 }

@@ -6,37 +6,126 @@
     <script src="https://trello.com/1/client.js?key=aa0f9cf4d2d738632836aa054dcdda43"></script>
     <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css">
     <link rel="stylesheet" href="costs-recording.css">
+    <style>
+        /* To counter trello styling which gives select a margin-bottom of 1em */
+        select {
+            margin-bottom: 0px;
+
+            background: #EDEFF0;
+            border-radius: 3px;
+            border: 1px solid #798D99;
+            box-sizing: border-box;
+        }
+    </style>
+    <script>
+        var t = window.TrelloPowerUp.iframe()
+    </script>
 </head>
 
 <body>
-    <div class="label-row">
-        
-        <div class="item-name">
-            <select>
-                <option value="brick">brick</option>
-                <option value="wood">wood</option>
-                <option value="rice">rice</option>
-                <option value="stationery">stationery</option>
+    <div class="grid-daddy">
+        <div class="name">Name</div>
+        <div class="cost">Cost</div>
+        <div class="quantity">Quantity</div>
+        <div class="total-cost">Total Cost</div>
+
+        <div class="row1">
+            <select class="name-select1">
+                <option class="add-new-item">Add new item</option>
+                <!-- <option value="wood">Wood</option>
+                <option value="rice">Rice</option>
+                <option value="stationery">Stationery</option> -->
             </select>
-        </div>
-
-        <div class="item-cost">
-            <input type="number">
-        </div>
-
-        <div class="item-quantity">
-            <input type="number">
-        </div>
-
-        <div class="total-cost">
-            <input type="number" readonly>
+            <input class="cost-input1" type="number">
+            <input class="quantity-input1" type="number">
+            <input class="total-cost-input1" type="number" readonly>
         </div>
 
     </div>
 
+
+    <button class="add-row-button">
+        Add row
+    </button>
+
     <script>
-        // document.querySelector(".total-cost input").value = 
+        var rowNo = 2
+        var addRowBut = document.querySelector(".add-row-button")
+        var gridDaddy = document.querySelector(".grid-daddy")
+        addRowBut.addEventListener("click", addRow)
+        addEventListeners()
+
+        function addRow(e) {
+            gridDaddy.insertAdjacentHTML("beforeend", `
+            <div class="row${rowNo}">
+                <select class="name-select1">
+                    <option value="brick">Brick</option>
+                    <option value="wood">Wood</option>
+                    <option value="rice">Rice</option>
+                    <option value="stationery">Stationery</option>
+                </select>
+                <input class="cost-input1" type="number">
+                <input class="quantity-input1" type="number">
+                <input class="total-cost-input1" type="number" readonly>
+            </div>
+            `)
+
+            //Changing grid CSS to accomodate new row
+            gridDaddy.style.gridTemplateRows = "30px ".repeat(1 + rowNo)
+            var newGridArea = ` "name cost quantity total-cost" `
+            for (var i = 1; i < rowNo + 1; i++) {
+                newGridArea = newGridArea + `"row${i} row${i} row${i} row${i}"`
+            }
+            gridDaddy.style.gridTemplateAreas = newGridArea
+            var newRow = document.querySelector(`.row${rowNo}`)
+            newRow.style.gridArea = `row${rowNo}`
+            newRow.style.display = "flex"
+            newRow.style.flexDirection = "row"
+            ///////////////////////////////////////////
+            rowNo += 1
+
+            // Adding event listeners to all rows
+            addEventListeners()
+        }
+
+        function addEventListeners(){
+            var costInputs = document.getElementsByClassName("cost-input1")
+            var quantInputs = document.getElementsByClassName("quantity-input1")
+            var totalCostInputs = document.getElementsByClassName("total-cost-input1")
+            var addNewItemOptions = document.getElementsByClassName("add-new-item")
+
+            function handleCost(e){
+                totalCostInputs[e.target.index].value = e.target.value * quantInputs[e.target.index].value
+            }
+            function handleQuant(e){
+                totalCostInputs[e.target.index].value = e.target.value * costInputs[e.target.index].value
+            }
+            function handleAddNewItem(e){
+                t.popup({
+                    title: 'Add new item',
+                    url: './add-new-item.html',
+                    args: { myArgs: 'You can access these with t.arg()' },
+                    height: 300
+                })
+            }
+
+            for (var i = 0; i < costInputs.length; i++) {
+                costInputs[i].addEventListener('change', handleCost)
+                costInputs[i].index = i
+
+                quantInputs[i].addEventListener('change', handleQuant)
+                quantInputs[i].index = i
+                // If anonymous functions are used, costInputs[i] and quantInputs[i] aren't defined. Maybe anon function can't access
+                // the i variable?
+
+                addNewItemOptions[i].addEventListener("click", handleAddNewItem)
+            }
+        }
+    
+       
+        
     </script>
+
 </body>
 
 </html>
