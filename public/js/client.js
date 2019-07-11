@@ -26,7 +26,9 @@ TrelloPowerUp.initialize({
                 icon: GRAY_ICON, // Must be a gray icon, colored icons not allowed.
                 content: {
                     type: 'iframe',
-                    url: t.signUrl('./costs-recording.html'),
+                    url: t.signUrl('./costs-recording.html', {
+                        arg: t
+                    }),
                     height: 400
                 }
             }
