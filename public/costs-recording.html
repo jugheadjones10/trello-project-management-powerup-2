@@ -50,7 +50,7 @@
     </button>
 
     <script>
-        var t2 = window.TrelloPowerUp.iframe()
+        // var t = window.TrelloPowerUp.iframe()
 
         var rowNo = 2
         var addRowBut = document.querySelector(".add-row-button")
@@ -107,7 +107,7 @@
             function handleChangeItem(e) {
                 console.log(e.target.value)
                 if (e.target.value == "add-new-item") {
-                    t2.arg.popup({
+                    t.popup({
                         title: 'Add new item',
                         url: './add-new-item.html',
                         args: { myArgs: 'You can access these with t.arg()' },

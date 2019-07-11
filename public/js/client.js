@@ -27,9 +27,6 @@ TrelloPowerUp.initialize({
                 content: {
                     type: 'iframe',
                     url: t.signUrl('./costs-recording.html'),
-                    // , {
-                    //     arg: t
-                    // }),
                     height: 400
                 }
             }
