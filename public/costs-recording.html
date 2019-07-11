@@ -18,7 +18,7 @@
         }
     </style>
     <script>
-        var t = window.TrelloPowerUp.iframe()
+        // var t = window.TrelloPowerUp.iframe()
     </script>
 </head>
 
@@ -50,6 +50,8 @@
     </button>
 
     <script>
+        var t = window.TrelloPowerUp.iframe()
+
         var rowNo = 2
         var addRowBut = document.querySelector(".add-row-button")
         var gridDaddy = document.querySelector(".grid-daddy")
@@ -107,7 +109,7 @@
                 if (e.target.value == "add-new-item") {
                     t.popup({
                         title: 'Add new item',
-                        url: 'add-new-item.html',
+                        url: './add-new-item.html',
                         args: { myArgs: 'You can access these with t.arg()' },
                         height: 300
                     })
