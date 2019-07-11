@@ -1,3 +1,4 @@
+/******** Cost row **********/
 .label-row{
     height: 50px;
     display: flex;
@@ -5,39 +6,33 @@
     align-items: center;
 }
 
+/****** All divs in each cost row *******/
 .label-row > div{
-    height: 50px;
-    border: solid brown;
+    height: 30px;
+    border: solid brown 0.5px;
+}
+
+/* **All inputs and selects in each cost row */
+.label-row > div > input, .label-row > div > select{
+    height: 100%;
 }
  
-
-/* **************************** */
+/* ********Item name column*********** */
 .item-name{
     flex-grow: 2;
 }
 
-.item-name select{
-
-}
-/* **************************** */
-
-
-/* **************************** */
+/* ***********Item cost column******* */
 .item-cost{
     flex-grow: 1;
 }
-/* **************************** */
 
-
-/* **************************** */
+/* ********Item quantity column******* */
 .item-quantity{
     flex-grow: 1;
 }
-/* **************************** */
 
-
-/* **************************** */
+/* **********Total cost column******* */
 .total-cost{
     flex-grow: 1;
 }
-/* **************************** */
