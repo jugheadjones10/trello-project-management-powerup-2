@@ -1,5 +1,5 @@
 
-cd C:/Users/kimyo/Desktop/Trello-power-up
+cd C:/Users/ASUS/Desktop/Trello-power-up
 # switch to branch you want to use
 git checkout master
 # add all added/modified files
