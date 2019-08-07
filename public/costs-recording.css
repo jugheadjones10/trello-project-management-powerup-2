@@ -1,13 +1,13 @@
 .grid-daddy{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 30px 30px;
     grid-template-areas: 
-    "name cost quantity total-cost"
-    "row1 row1 row1 row1";
+    "name cost quantity actual-total-cost estimated-total-cost"
+    "row1 row1 row1 row1 row1";
 }
 
-.name, .cost, .quantity, .total-cost{
+.name, .cost, .quantity, .actual-total-cost, .estimated-total-cost{
     line-height: 30px;
     text-align: center;
 }   
@@ -24,8 +24,12 @@
     grid-area: quantity;
 }
 
-.total-cost{
-    grid-area: total-cost;
+.actual-total-cost{
+    grid-area: actual-total-cost;
+}
+
+.estimated-total-cost{
+    grid-area: estimated-total-cost;
 }
 
 
@@ -38,8 +42,41 @@
 
 .row1{
     grid-area: row1;
-
     display: flex;
     flex-direction: row;
 }
+
+.row1 > input, .row1 > select{
+    padding: 0;
+}
+
+/* ****************************** */
+.bottom-row{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 30px;
+    grid-template-areas: 
+    "add-row-button filler filler total-total-actual-cost total-total-estimated-cost"
+}
+
+.add-row-button{
+    margin: 0;
+    padding: 0;
+    grid-area: add-row-button;
+}
+
+.filler{
+    grid-area: filler;
+}
+
+.total-total-actual-cost{
+    grid-area: total-total-actual-cost;
+    height: 100%;
+}
+
+.total-total-estimated-cost{
+    grid-area: total-total-estimated-cost;
+    height: 100%;
+}
+
 

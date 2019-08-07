@@ -16,10 +16,13 @@
             border: 1px solid #798D99;
             box-sizing: border-box;
         }
+
+
+        /* Roundabout selector below in order for it to take priority over Trello's CSS */
+        div > input[type=number], div > .name-select1{
+            padding: 0;
+        }
     </style>
-    <script>
-        // var t = window.TrelloPowerUp.iframe()
-    </script>
 </head>
 
 <body>
@@ -27,28 +30,35 @@
         <div class="name">Name</div>
         <div class="cost">Cost</div>
         <div class="quantity">Quantity</div>
-        <div class="total-cost">Total Cost</div>
+        <div class="actual-total-cost">Actual Total Cost</div>
+        <div class="estimated-total-cost">Estimated Total Cost</div>
 
         <div class="row1">
             <select class="name-select1">
                 <option value=""></option>
-                <option value="add-new-item">Add new item</option>
+                <option value="brick">Brick</option>
                 <option value="wood">Wood</option>
                 <option value="rice">Rice</option>
                 <option value="stationery">Stationery</option>
             </select>
             <input class="cost-input1" type="number">
             <input class="quantity-input1" type="number">
-            <input class="total-cost-input1" type="number" readonly>
+            <input class="actual-total-cost-input1" type="number" value="0" readonly >
+            <input class="estimated-total-cost-input1" type="number" value="0">
         </div>
 
     </div>
 
+    <div class="bottom-row">
+        <button class="add-row-button">Add row</button>
+        <div class="filler"></div>
+        <div class="filler"></div>
 
-    <button class="add-row-button">
-        Add row
-    </button>
+        <input class="total-total-actual-cost" type="number" readonly>
+        <input class="total-total-estimated-cost" type="number" readonly>
+    </div>
 
+   
     <script>
         var t = window.TrelloPowerUp.iframe()
 
@@ -70,15 +80,16 @@
                 </select>
                 <input class="cost-input1" type="number">
                 <input class="quantity-input1" type="number">
-                <input class="total-cost-input1" type="number" readonly>
+                <input class="actual-total-cost-input1" type="number" value="0" readonly >
+                <input class="estimated-total-cost-input1" type="number" value="0">
             </div>
             `)
 
             //Changing grid CSS to accomodate new row
             gridDaddy.style.gridTemplateRows = "30px ".repeat(1 + rowNo)
-            var newGridArea = ` "name cost quantity total-cost" `
+            var newGridArea = ` "name cost quantity actual-total-cost estimated-total-cost" `
             for (var i = 1; i < rowNo + 1; i++) {
-                newGridArea = newGridArea + `"row${i} row${i} row${i} row${i}"`
+                newGridArea = newGridArea + `"row${i} row${i} row${i} row${i} row${i}"`
             }
             gridDaddy.style.gridTemplateAreas = newGridArea
             var newRow = document.querySelector(`.row${rowNo}`)
@@ -95,43 +106,84 @@
         function addEventListeners() {
             var costInputs = document.getElementsByClassName("cost-input1")
             var quantInputs = document.getElementsByClassName("quantity-input1")
-            var totalCostInputs = document.getElementsByClassName("total-cost-input1")
-            var selectItemInputs = document.getElementsByClassName("name-select1")
+            var actualTotalCostInputs = document.getElementsByClassName("actual-total-cost-input1")
+            var estimatedTotalCostInputs = document.getElementsByClassName("estimated-total-cost-input1")
+            var totalTotalActualCost = document.querySelector(".total-total-actual-cost")
+            var totalTotalEstimatedCost = document.querySelector(".total-total-estimated-cost")
+            var nameSelectInputs = document.getElementsByClassName("name-select1")
 
             function handleCost(e) {
-                totalCostInputs[e.target.index].value = e.target.value * quantInputs[e.target.index].value
+                actualTotalCostInputs[e.target.index].value = e.target.value * quantInputs[e.target.index].value
+                //////////////////////////////
+                var total = 0
+                for(var i = 0; i < actualTotalCostInputs.length; i++){
+                    total += parseInt(actualTotalCostInputs[i].value, 10)
+                }
+                totalTotalActualCost.value = total
+                //////////////////////////////
             }
+
             function handleQuant(e) {
-                totalCostInputs[e.target.index].value = e.target.value * costInputs[e.target.index].value
+                actualTotalCostInputs[e.target.index].value = e.target.value * costInputs[e.target.index].value
+                //////////////////////////////
+                var total = 0
+                for(var i = 0; i < actualTotalCostInputs.length; i++){
+                    total += parseInt(actualTotalCostInputs[i].value, 10)
+                }
+                totalTotalActualCost.value = total
+                //////////////////////////////
             }
+
             function handleChangeItem(e) {
                 console.log(e.target.value)
                 if (e.target.value == "add-new-item") {
                     t.popup({
                         title: 'Add new item',
                         url: './add-new-item.html',
-                        args: { myArgs: 'You can access these with t.arg()' },
+                        args: {myArgs: 'You can access these with t.arg()'},
                         height: 300
                     })
                     console.log("fk t.popup")
                 }
             }
+            // function handleActualTotalCost(e){
+            //     var total = 0
+            //     for(var i = 0; i < actualTotalCostInputs.length; i++){
+            //         total += parseInt(actualTotalCostInputs[i].value, 10)
+            //     }
+            //     totalTotalActualCost.value = total
+            // }
+            function handleEstimatedTotalCost(e){
+                var total = 0
+                for(var i = 0; i < estimatedTotalCostInputs.length; i++){
+                    total += parseFloat(estimatedTotalCostInputs[i].value)
+                }
+                totalTotalEstimatedCost.value = total
+            }
 
             for (var i = 0; i < costInputs.length; i++) {
-                costInputs[i].addEventListener('change', handleCost)
                 costInputs[i].index = i
-
-                quantInputs[i].addEventListener('change', handleQuant)
                 quantInputs[i].index = i
+
+                costInputs[i].addEventListener('input', handleCost)
+                quantInputs[i].addEventListener('input', handleQuant)
                 // If anonymous functions are used, costInputs[i] and quantInputs[i] aren't defined. Maybe anon function can't access
                 // the i variable?
 
-                selectItemInputs[i].addEventListener("change", handleChangeItem)
+                nameSelectInputs[i].addEventListener("input", handleChangeItem)
+
+                // actualTotalCostInputs[i].addEventListener("change", handleActualTotalCost)
+                // Because the actual total cost inputs are read only, the event handler for "change" isn't called
+                // when its value is updated by changes in quant or price.
+                // WAIT a min - both the above line AND the for loops in the quant and price event handlers
+                // need to be present in order for this to work?? No idea why, but it works. 
+                estimatedTotalCostInputs[i].addEventListener("input", handleEstimatedTotalCost)
+
+                estimatedTotalCostInputs[i].addEventListener("click", function(e){
+                    e.target.select()
+                })
             }
         }
-
-
-
     </script>
 
 </body>
