@@ -10,13 +10,11 @@
         /* To counter trello styling which gives select a margin-bottom of 1em */
         select {
             margin-bottom: 0px;
-
             background: #EDEFF0;
             border-radius: 3px;
             border: 1px solid #798D99;
             box-sizing: border-box;
         }
-
 
         /* Roundabout selector below in order for it to take priority over Trello's CSS */
         div > input[type=number], div > .name-select1{
@@ -27,10 +25,16 @@
 
 <body>
     <div class="grid-daddy">
-        <div class="name">Name</div>
-        <div class="cost">Cost</div>
+        <div class="name">Item</div>
+        <div class="cost">Unit Cost</div>
         <div class="quantity">Quantity</div>
+
+        <div class="calculated-total-cost">Calculated Total Cost</div>
+
         <div class="actual-total-cost">Actual Total Cost</div>
+
+        <div class="theDifference">Difference</div>
+
         <div class="estimated-total-cost">Estimated Total Cost</div>
 
         <div class="row1">
@@ -43,7 +47,9 @@
             </select>
             <input class="cost-input1" type="number">
             <input class="quantity-input1" type="number">
-            <input class="actual-total-cost-input1" type="number" value="0" readonly >
+            <input class="calculated-total-cost-input1" type="number" value="0" readonly>
+            <input class="actual-total-cost-input1" type="number" value="0">
+            <input class="difference-input1" type="number" value="0" readonly>
             <input class="estimated-total-cost-input1" type="number" value="0">
         </div>
 
@@ -54,9 +60,13 @@
         <div class="filler"></div>
         <div class="filler"></div>
 
+        <input class="total-total-calculated-cost" type="number" readonly>
         <input class="total-total-actual-cost" type="number" readonly>
+        <input class="totalDifference" type="number" readonly>
         <input class="total-total-estimated-cost" type="number" readonly>
     </div>
+
+    <textarea class="comments-section" rows="10" cols="100"></textarea>
 
    
     <script>
@@ -80,16 +90,18 @@
                 </select>
                 <input class="cost-input1" type="number">
                 <input class="quantity-input1" type="number">
-                <input class="actual-total-cost-input1" type="number" value="0" readonly >
+                <input class="calculated-total-cost-input1" type="number" value="0" readonly>
+                <input class="actual-total-cost-input1" type="number" value="0">
+                <input class="difference-input1" type="number" value="0" readonly>
                 <input class="estimated-total-cost-input1" type="number" value="0">
             </div>
             `)
 
             //Changing grid CSS to accomodate new row
-            gridDaddy.style.gridTemplateRows = "30px ".repeat(1 + rowNo)
-            var newGridArea = ` "name cost quantity actual-total-cost estimated-total-cost" `
+            gridDaddy.style.gridTemplateRows = "35px ".repeat(1 + rowNo)
+            var newGridArea = ` "name cost quantity calculated-total-cost actual-total-cost theDifference estimated-total-cost" `
             for (var i = 1; i < rowNo + 1; i++) {
-                newGridArea = newGridArea + `"row${i} row${i} row${i} row${i} row${i}"`
+                newGridArea = newGridArea + `"row${i} row${i} row${i} row${i} row${i}  row${i}  row${i}"`
             }
             gridDaddy.style.gridTemplateAreas = newGridArea
             var newRow = document.querySelector(`.row${rowNo}`)
@@ -106,31 +118,47 @@
         function addEventListeners() {
             var costInputs = document.getElementsByClassName("cost-input1")
             var quantInputs = document.getElementsByClassName("quantity-input1")
+            var calculatedTotalCostInputs = document.getElementsByClassName("calculated-total-cost-input1")
             var actualTotalCostInputs = document.getElementsByClassName("actual-total-cost-input1")
+            var difference = document.getElementsByClassName("difference-input1")
             var estimatedTotalCostInputs = document.getElementsByClassName("estimated-total-cost-input1")
+
+
+            var totalTotalCalculatedCost = document.querySelector(".total-total-calculated-cost")
             var totalTotalActualCost = document.querySelector(".total-total-actual-cost")
+            var totalDifference = document.querySelector(".totalDifference")
             var totalTotalEstimatedCost = document.querySelector(".total-total-estimated-cost")
             var nameSelectInputs = document.getElementsByClassName("name-select1")
 
             function handleCost(e) {
-                actualTotalCostInputs[e.target.index].value = e.target.value * quantInputs[e.target.index].value
+                calculatedTotalCostInputs[e.target.index].value = e.target.value * quantInputs[e.target.index].value
                 //////////////////////////////
                 var total = 0
-                for(var i = 0; i < actualTotalCostInputs.length; i++){
-                    total += parseInt(actualTotalCostInputs[i].value, 10)
+                var totalDiff = 0
+                for(var i = 0; i < calculatedTotalCostInputs.length; i++){
+                    total += parseInt(calculatedTotalCostInputs[i].value, 10)
+                    totalDiff += parseInt(difference[i].value, 10)
                 }
-                totalTotalActualCost.value = total
+                totalTotalCalculatedCost.value = total
+                totalDifference.value = totalDiff
+                //////////////////////////////
+                difference[e.target.index].value =  calculatedTotalCostInputs[e.target.index].value -  actualTotalCostInputs[e.target.index].value
                 //////////////////////////////
             }
 
             function handleQuant(e) {
-                actualTotalCostInputs[e.target.index].value = e.target.value * costInputs[e.target.index].value
+                calculatedTotalCostInputs[e.target.index].value = e.target.value * costInputs[e.target.index].value
                 //////////////////////////////
                 var total = 0
-                for(var i = 0; i < actualTotalCostInputs.length; i++){
-                    total += parseInt(actualTotalCostInputs[i].value, 10)
+                var totalDiff = 0
+                for(var i = 0; i < calculatedTotalCostInputs.length; i++){
+                    total += parseInt(calculatedTotalCostInputs[i].value, 10)
+                    totalDiff += parseInt(difference[i].value, 10)
                 }
-                totalTotalActualCost.value = total
+                totalTotalCalculatedCost.value = total
+                totalDifference.value = totalDiff
+                //////////////////////////////
+                difference[e.target.index].value =  calculatedTotalCostInputs[e.target.index].value -  actualTotalCostInputs[e.target.index].value
                 //////////////////////////////
             }
 
@@ -146,13 +174,7 @@
                     console.log("fk t.popup")
                 }
             }
-            // function handleActualTotalCost(e){
-            //     var total = 0
-            //     for(var i = 0; i < actualTotalCostInputs.length; i++){
-            //         total += parseInt(actualTotalCostInputs[i].value, 10)
-            //     }
-            //     totalTotalActualCost.value = total
-            // }
+
             function handleEstimatedTotalCost(e){
                 var total = 0
                 for(var i = 0; i < estimatedTotalCostInputs.length; i++){
@@ -161,9 +183,23 @@
                 totalTotalEstimatedCost.value = total
             }
 
+            function handleActualTotalCost(e){
+                difference[e.target.index].value =  calculatedTotalCostInputs[e.target.index].value - actualTotalCostInputs[e.target.index].value
+
+                var total = 0
+                var totalDiff = 0
+                for(var i = 0; i < actualTotalCostInputs.length; i++){
+                    total += parseFloat(actualTotalCostInputs[i].value)
+                    totalDiff += parseInt(difference[i].value, 10)
+                }
+                totalTotalActualCost.value = total
+                totalDifference.value = totalDiff
+            }
+
             for (var i = 0; i < costInputs.length; i++) {
                 costInputs[i].index = i
                 quantInputs[i].index = i
+                actualTotalCostInputs[i].index = i
 
                 costInputs[i].addEventListener('input', handleCost)
                 quantInputs[i].addEventListener('input', handleQuant)
@@ -172,13 +208,15 @@
 
                 nameSelectInputs[i].addEventListener("input", handleChangeItem)
 
-                // actualTotalCostInputs[i].addEventListener("change", handleActualTotalCost)
-                // Because the actual total cost inputs are read only, the event handler for "change" isn't called
+                // calculatedTotalCostInputs[i].addEventListener("change", handlecalculatedTotalCost)
+                // Because the calculated total cost inputs are read only, the event handler for "change" isn't called
                 // when its value is updated by changes in quant or price.
-                // WAIT a min - both the above line AND the for loops in the quant and price event handlers
-                // need to be present in order for this to work?? No idea why, but it works. 
-                estimatedTotalCostInputs[i].addEventListener("input", handleEstimatedTotalCost)
+                actualTotalCostInputs[i].addEventListener("input", handleActualTotalCost)
+                actualTotalCostInputs[i].addEventListener("click", function(e){
+                    e.target.select()
+                })
 
+                estimatedTotalCostInputs[i].addEventListener("input", handleEstimatedTotalCost)
                 estimatedTotalCostInputs[i].addEventListener("click", function(e){
                     e.target.select()
                 })

@@ -1,16 +1,18 @@
 .grid-daddy{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 30px 30px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 35px 35px;
     grid-template-areas: 
-    "name cost quantity actual-total-cost estimated-total-cost"
-    "row1 row1 row1 row1 row1";
+    "name cost quantity calculated-total-cost actual-total-cost theDifference estimated-total-cost"
+    "row1 row1 row1 row1 row1 row1 row1";
 }
 
-.name, .cost, .quantity, .actual-total-cost, .estimated-total-cost{
-    line-height: 30px;
+.name, .cost, .quantity, .calculated-total-cost, .actual-total-cost, .theDifference, .estimated-total-cost{
     text-align: center;
-}   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .name{
     grid-area: name;
@@ -24,8 +26,16 @@
     grid-area: quantity;
 }
 
+.calculated-total-cost{
+    grid-area: calculated-total-cost;
+}
+
 .actual-total-cost{
     grid-area: actual-total-cost;
+}
+
+.theDifference{
+    grid-area: theDifference;
 }
 
 .estimated-total-cost{
@@ -53,10 +63,10 @@
 /* ****************************** */
 .bottom-row{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 30px;
     grid-template-areas: 
-    "add-row-button filler filler total-total-actual-cost total-total-estimated-cost"
+    "add-row-button filler filler total-total-calculated-cost total-total-actual-cost totalDifference total-total-estimated-cost"
 }
 
 .add-row-button{
@@ -69,14 +79,34 @@
     grid-area: filler;
 }
 
+.total-total-calculated-cost, .total-total-actual-cost, .totalDifference, .total-total-estimated-cost{
+    height: 100%;
+}
+
+.total-total-calculated-cost{
+    grid-area: total-total-calculated-cost;
+}
+
 .total-total-actual-cost{
     grid-area: total-total-actual-cost;
-    height: 100%;
+}
+
+.totalDifference{
+    grid-area: totalDifference;
 }
 
 .total-total-estimated-cost{
     grid-area: total-total-estimated-cost;
-    height: 100%;
+}
+
+
+/* ************************* */
+.comments-section{
+    width: 100%;
+    margin: 80 0 0 0;
+    padding: 20px;
+    max-width: 1000px;
+    resize: vertical;
 }
 
 
