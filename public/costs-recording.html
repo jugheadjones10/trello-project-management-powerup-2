@@ -71,16 +71,20 @@
         }
 
         function editItemHandler(e){
-            var editItemWindow = window.open('awd.html', null, "height=500, width=800, toolbar=no")
-
-            editItemWindow.onload = function(){
-                function receiveMessage(event) {
-                    editItemWindow.console.log(event.data)
-                }
-                this.addEventListener("message", receiveMessage, false)
-
+            if(this.options[this.selectedIndex].text == "add/delete item"){
                 
-                this.postMessage("fuck", '*')
+                var editItemWindow = window.open('awd.html', null, "height=500, width=800, toolbar=no")
+
+                editItemWindow.onload = function () {
+                    function receiveMessage(event) {
+                        editItemWindow.console.log(event.data)
+                    }
+                    this.addEventListener("message", receiveMessage, false)
+
+
+                    this.postMessage("fuck", '*')
+                }
+
             }
         }
 
@@ -102,9 +106,9 @@
         <div class="estimated-total-cost">Estimated Total Cost</div>
 
         <div class="row1">
-            <select class="name-select1">
+            <select class="name-select1" onchange="editItemHandler()">
                 <option value=""></option>
-                <option value="edit-item" onclick="editItemHandler()">add/delete item</option>
+                <option value="edit-item">add/delete item</option>
                 <option value="brick">Brick</option>
                 <option value="wood">Wood</option>
                 <option value="rice">Rice</option>
