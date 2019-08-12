@@ -30,6 +30,7 @@
                 mywind.console.log("WDWA")
                 this.console.log("FUCK")
             }
+            // Above code doesn't work when testing on the file system
                 
                 // function receiveMessage(event) {
                 //     mywind.console.log(event.data)
@@ -68,6 +69,21 @@
             // console.log(mywind)
             // console.log(mywind.fk)
         }
+
+        function editItemHandler(e){
+            var editItemWindow = window.open('awd.html', null, "height=500, width=800, toolbar=no")
+
+            editItemWindow.onload = function(){
+                function receiveMessage(event) {
+                    editItemWindow.console.log(event.data)
+                }
+                this.addEventListener("message", receiveMessage, false)
+
+                
+                this.postMessage("fuck", '*')
+            }
+        }
+
     </script>
 </head>
 
@@ -88,7 +104,7 @@
         <div class="row1">
             <select class="name-select1">
                 <option value=""></option>
-                <option value="edit-item">add/delete item</option>
+                <option value="edit-item" onclick="editItemHandler()">add/delete item</option>
                 <option value="brick">Brick</option>
                 <option value="wood">Wood</option>
                 <option value="rice">Rice</option>
