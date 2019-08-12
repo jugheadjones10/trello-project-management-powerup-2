@@ -26,15 +26,17 @@
         function fker(e){
             var mywind = window.open('awd.html')
 
-            setTimeout(function(){
-                
+            mywind.onload = function(){
                 mywind.console.log("WDWA")
+
+            }
+                
                 // function receiveMessage(event) {
                 //     mywind.console.log(event.data)
                 // }
                 // this.addEventListener("message", receiveMessage, false)
                 // this.postMessage("fuck", '*')
-            }, 3000)
+        
             // mywind.onload = function(){
             //     this.console.log("WDWA")
             //     function receiveMessage(event) {
