@@ -71,8 +71,9 @@
         }
 
         function editItemHandler(e){
-            if(this.options[this.selectedIndex].text == "add/delete item"){
-                
+            // console.log(e.options)
+            if(e.options == "edit-item"){
+
                 var editItemWindow = window.open('awd.html', null, "height=500, width=800, toolbar=no")
 
                 editItemWindow.onload = function () {
@@ -106,7 +107,7 @@
         <div class="estimated-total-cost">Estimated Total Cost</div>
 
         <div class="row1">
-            <select class="name-select1" onchange="editItemHandler()">
+            <select class="name-select1">
                 <option value=""></option>
                 <option value="edit-item">add/delete item</option>
                 <option value="brick">Brick</option>
@@ -243,14 +244,18 @@
                 console.log(e.target.value)
 
                 if (e.target.value == "edit-item") {
+                    var editItemWindow = window.open('awd.html', null, "height=500, width=800, toolbar=no")
 
-                    // t.popup({
-                    //     title: 'Add new item',
-                    //     url: './add-new-item.html',
-                    //     args: {myArgs: 'You can access these with t.arg()'},
-                    //     height: 300
-                    // })
-                    // console.log("fk t.popup")
+                    editItemWindow.onload = function () {
+                        function receiveMessage(event) {
+                            editItemWindow.console.log(event.data)
+                        }
+                        this.addEventListener("message", receiveMessage, false)
+
+
+                        this.postMessage("fuck", '*')
+                    }
+                    
                 }
             }
 
