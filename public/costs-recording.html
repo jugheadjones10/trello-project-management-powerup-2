@@ -21,6 +21,52 @@
             padding: 0;
         }
     </style>
+
+    <script>
+        function fker(e){
+            var mywind = window.open('awd.html')
+
+            // setTimeout(function(){
+                
+            //     mywind.console.log("WDWA")
+            //     // function receiveMessage(event) {
+            //     //     mywind.console.log(event.data)
+            //     // }
+            //     // this.addEventListener("message", receiveMessage, false)
+            //     // this.postMessage("fuck", '*')
+            // }, 3000)
+            // mywind.onload = function(){
+            //     this.console.log("WDWA")
+            //     function receiveMessage(event) {
+            //         mywind.console.log(event.data)
+            //     }
+            //     this.addEventListener("message", receiveMessage, false)
+            //     this.postMessage("fuck", '*')
+            // }
+            // function receiveMessage(event) {
+            //     console.log(event.data)
+            // }
+        
+            // mywind.addEventListener("message", receiveMessage, false)
+            // BIG QUESTION :  can i put event listeners on a window from another window? E.g the parent window of a popup
+
+
+
+            // mywind.onload = function(){
+               
+            // }
+            // setTimeout(function(){
+            //     mywind.postMessage("fuck", '*')
+            // }, 3000)
+
+            // Remember to call post message only after window has been given time to open
+            // mywind.postMessage("fuck", '*')
+
+            // mywind.fk = 69
+            // console.log(mywind)
+            // console.log(mywind.fk)
+        }
+    </script>
 </head>
 
 <body>
@@ -40,6 +86,7 @@
         <div class="row1">
             <select class="name-select1">
                 <option value=""></option>
+                <option value="edit-item">add/delete item</option>
                 <option value="brick">Brick</option>
                 <option value="wood">Wood</option>
                 <option value="rice">Rice</option>
@@ -66,6 +113,13 @@
         <input class="total-total-estimated-cost" type="number" readonly>
     </div>
 
+    <!-- <div class="budget-exceed-report">
+        <div class="budget-exceed-surplus-deficit">Budget surplus/deficit</div>
+        <input class="budget-exceed-amount" type="number" readonly> 
+    </div> -->
+
+    <button onclick="fker()">Fk</button>
+
     <textarea class="comments-section" rows="10" cols="100"></textarea>
 
    
@@ -83,6 +137,7 @@
             <div class="row${rowNo}">
                 <select class="name-select1">
                     <option value=""></option>
+                    <option value="edit-item">add/delete item</option>
                     <option value="brick">Brick</option>
                     <option value="wood">Wood</option>
                     <option value="rice">Rice</option>
@@ -164,14 +219,16 @@
 
             function handleChangeItem(e) {
                 console.log(e.target.value)
-                if (e.target.value == "add-new-item") {
-                    t.popup({
-                        title: 'Add new item',
-                        url: './add-new-item.html',
-                        args: {myArgs: 'You can access these with t.arg()'},
-                        height: 300
-                    })
-                    console.log("fk t.popup")
+
+                if (e.target.value == "edit-item") {
+
+                    // t.popup({
+                    //     title: 'Add new item',
+                    //     url: './add-new-item.html',
+                    //     args: {myArgs: 'You can access these with t.arg()'},
+                    //     height: 300
+                    // })
+                    // console.log("fk t.popup")
                 }
             }
 

@@ -60,6 +60,18 @@
     padding: 0;
 }
 
+div > .calculated-total-cost-input1, div > .actual-total-cost-input1{
+    background: #cff8e0;
+}
+
+div > .difference-input1{
+    background: #b9e6d5;
+}
+
+div > .estimated-total-cost-input1{
+    background: #edff57;
+}
+
 /* ****************************** */
 .bottom-row{
     display: grid;
@@ -83,6 +95,18 @@
     height: 100%;
 }
 
+div > .total-total-calculated-cost, div > .total-total-actual-cost, div > .totalDifference{
+    background: #cff8e0;
+}
+
+div > .totalDifference{
+    background: #b9e6d5;
+}
+
+div > .total-total-estimated-cost{
+    background: #edff57
+}
+
 .total-total-calculated-cost{
     grid-area: total-total-calculated-cost;
 }
@@ -99,11 +123,27 @@
     grid-area: total-total-estimated-cost;
 }
 
+/* ************************* */
+.budget-exceed-report{
+    width: 100%;
+    margin-top: 40px;
+}
+
+.budget-exceed-surplus-deficit{
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.budget-exceed-report > .budget-exceed-amount{
+    display: inline-block;
+    width: 70px;
+    margin: 0 0 0 10;
+}
 
 /* ************************* */
 .comments-section{
     width: 100%;
-    margin: 80 0 0 0;
+    margin: 40 0 0 0;
     padding: 20px;
     max-width: 1000px;
     resize: vertical;
