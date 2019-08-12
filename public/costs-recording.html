@@ -21,75 +21,6 @@
             padding: 0;
         }
     </style>
-
-    <script>
-        function fker(e){
-            var mywind = window.open('awd.html')
-
-            mywind.onload = function(){
-                mywind.console.log("WDWA")
-                this.console.log("FUCK")
-            }
-            // Above code doesn't work when testing on the file system
-                
-                // function receiveMessage(event) {
-                //     mywind.console.log(event.data)
-                // }
-                // this.addEventListener("message", receiveMessage, false)
-                // this.postMessage("fuck", '*')
-        
-            // mywind.onload = function(){
-            //     this.console.log("WDWA")
-            //     function receiveMessage(event) {
-            //         mywind.console.log(event.data)
-            //     }
-            //     this.addEventListener("message", receiveMessage, false)
-            //     this.postMessage("fuck", '*')
-            // }
-            // function receiveMessage(event) {
-            //     console.log(event.data)
-            // }
-        
-            // mywind.addEventListener("message", receiveMessage, false)
-            // BIG QUESTION :  can i put event listeners on a window from another window? E.g the parent window of a popup
-
-
-
-            // mywind.onload = function(){
-               
-            // }
-            // setTimeout(function(){
-            //     mywind.postMessage("fuck", '*')
-            // }, 3000)
-
-            // Remember to call post message only after window has been given time to open
-            // mywind.postMessage("fuck", '*')
-
-            // mywind.fk = 69
-            // console.log(mywind)
-            // console.log(mywind.fk)
-        }
-
-        function editItemHandler(e){
-            // console.log(e.options)
-            if(e.options == "edit-item"){
-
-                var editItemWindow = window.open('awd.html', null, "height=500, width=800, toolbar=no")
-
-                editItemWindow.onload = function () {
-                    function receiveMessage(event) {
-                        editItemWindow.console.log(event.data)
-                    }
-                    this.addEventListener("message", receiveMessage, false)
-
-
-                    this.postMessage("fuck", '*')
-                }
-
-            }
-        }
-
-    </script>
 </head>
 
 <body>
@@ -244,7 +175,7 @@
                 console.log(e.target.value)
 
                 if (e.target.value == "edit-item") {
-                    var editItemWindow = window.open('awd.html', null, "height=500, width=800, toolbar=no")
+                    var editItemWindow = window.open('edit-item-window.html', null, "height=500, width=800, toolbar=no")
 
                     editItemWindow.onload = function () {
                         function receiveMessage(event) {

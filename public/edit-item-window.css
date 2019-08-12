@@ -1,0 +1,32 @@
+.first-row{
+    display: flex;
+    align-items: center;
+}
+
+.first-row > .new-item-input{
+    margin: 0;
+}
+
+.add-sign{
+    background-image: url("assets/add.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: inherit;
+
+    width: 22px;
+    height: 22px;
+
+    display: inline-block;
+    margin-left: 5px;
+
+    transform: rotate(0deg);
+    transition: transform 0.5s ease;
+}
+
+.add-sign:hover{
+    transform: rotate(180deg);
+}
+
+body > .normal-item{
+    margin: 0;
+}
