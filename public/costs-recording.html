@@ -110,10 +110,10 @@
             var templateOptions = '<option value=""></option><option value="edit items">edit items</option>'
             if(window.updatedHTMLItems){
                 templateOptions = ''
-            }
-            if(!window.updatedHTMLItems){
+            }else{
                 window.updatedHTMLItems = ""
             }
+
             gridDaddy.insertAdjacentHTML("beforeend", `
             <div class="row${rowNo}">
                 <select class="name-select1">
