@@ -99,7 +99,8 @@
                     newOptions += `<option value="${event.data[z]}">${event.data[z]}</option>`
                 }
                 nameSelectInputs2[i].insertAdjacentHTML("beforeend", newOptions)
-                window.updatedItems = newOptions
+                window.updatedItems = event.data
+                window.updatedHTMLItems = newOptions
                 newOptions = '<option value=""></option><option value="edit items">edit items</option>'
             }
             console.log(event.data)
@@ -108,14 +109,14 @@
 
         function addRow(e) {
             var templateOptions = '<option value=""></option><option value="edit items">edit items</option>'
-            if(window.updatedItems){
+            if(window.updatedHTMLItems){
                 templateOptions = ''
             }
             gridDaddy.insertAdjacentHTML("beforeend", `
             <div class="row${rowNo}">
                 <select class="name-select1">
                     ${templateOptions}
-                    ${window.updatedItems}
+                    ${window.updatedHTMLItems}
                 </select>
                 <input class="cost-input1" type="number">
                 <input class="quantity-input1" type="number">
@@ -194,7 +195,7 @@
             function handleChangeItem(e) {
                 if (e.target.value == "edit items") {
                     var editItemWindow = window.open('edit-item-window.html', null, "height=300, width=155, toolbar=no")
-                    if(window.updatedItems){
+                    if(window.updatedHTMLItems){
 
                         // function popupReceiveMessage(event) {
                         //     for(var i = 0; i < event.data.length; i++){
@@ -212,7 +213,7 @@
 
                         // editItemWindow.addEventListener("message", popupReceiveMessage, false) 
                         editItemWindow.onload = function(){
-                            editItemWindow.postMessage(window.updatedItems, "*")  
+                            editItemWindow.postMessage(window.updatedHTMLItems, "*")  
                         }
                     }
                     e.target.value = ""
