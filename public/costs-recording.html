@@ -88,9 +88,6 @@
             var newOptions = '<option value=""></option><option value="edit items">edit items</option>'
             for(var i = 0; i < nameSelectInputs2.length; i++){
                 var originalVal = nameSelectInputs2[i].value
-                if(event.data.includes(originalVal)){
-                    nameSelectInputs2[i].value = originalVal
-                }
                 while(nameSelectInputs2[i].firstChild) {
                     nameSelectInputs2[i].removeChild(nameSelectInputs2[i].firstChild)
                 }
@@ -101,6 +98,9 @@
                 window.updatedItems = event.data
                 window.updatedHTMLItems = newOptions
                 newOptions = '<option value=""></option><option value="edit items">edit items</option>'
+                if (event.data.includes(originalVal)) {
+                    nameSelectInputs2[i].value = originalVal
+                }
             }
             console.log(event.data)
         }
