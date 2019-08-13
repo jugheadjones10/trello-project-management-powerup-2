@@ -7,6 +7,27 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css">
     <link rel="stylesheet" href="edit-item-window.css">
+
+    <script>
+        var firstRow = document.querySelector(".first-row")
+
+        function receiveMessage(event) {
+            console.log(event.data)
+            for (var i = 0; i < event.data.length; i++) {
+                if (event.data[i] !== "" && event.data[i] !== "edit items") {
+                    firstRow.insertAdjacentHTML("afterend", `
+                        <div class="options-row">
+                            <input class="normal-item" value=${event.data[i]} type="text">
+                            <div class="minus-sign" onclick="handleMinusClick(this)"></div>
+                        </div>
+                    `)
+                }
+            }
+                
+        }
+
+        window.addEventListener("message", receiveMessage, false)  
+    </script>
 </head>
 <body>
     <div class="first-row">
@@ -14,8 +35,10 @@
         <div class="add-sign"></div>
     </div>
 
-    <button class="save-but">Save</button>
-    <button class="cancel-but">Cancel</button>
+    <div class="buttons-row">
+        <button class="save-but">Save</button>
+        <button class="cancel-but">Cancel</button>
+    </div>
 
     <script>
         function handleMinusClick(eventTarget){
@@ -31,18 +54,21 @@
         var addSign = document.querySelector(".add-sign")
         var saveBut = document.querySelector(".save-but")
         var cancelBut = document.querySelector(".cancel-but")
+        newItemInput.select() 
+
         addSign.addEventListener("click", function(e){
-            firstRow.insertAdjacentHTML("afterend", `
-                <div class="options-row">
-                    <input class="normal-item" value=${newItemInput.value} type="text" readonly">
-                    <div class="minus-sign" onclick="handleMinusClick(this)"></div>
-                </div>
-            `)
-        })
-        newItemInput.addEventListener("click", function (e) {
-            e.target.select()
-        })        
-        cancelBut.addEventListener("click", function(e){
+            if(e.target.parentNode.firstElementChild.value){
+                firstRow.insertAdjacentHTML("afterend", `
+                    <div class="options-row">
+                        <input class="normal-item" value=${newItemInput.value} type="text">
+                        <div class="minus-sign" onclick="handleMinusClick(this)"></div>
+                    </div>
+                `)
+                newItemInput.value = ""
+            }
+            newItemInput.select()
+        })   
+        cancelBut.addEventListener("click", function (e){
             window.close()
         })
         saveBut.addEventListener("click", function (e) {

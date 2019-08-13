@@ -44,11 +44,11 @@
         <div class="row1">
             <select class="name-select1">
                 <option value=""></option>
-                <option value="edit-item">add/delete item</option>
-                <option value="brick">Brick</option>
+                <option value="edit items">edit items</option>
+                <!-- <option value="brick">Brick</option>
                 <option value="wood">Wood</option>
                 <option value="rice">Rice</option>
-                <option value="stationery">Stationery</option>
+                <option value="stationery">Stationery</option> -->
             </select>
             <input class="cost-input1" type="number">
             <input class="quantity-input1" type="number">
@@ -90,7 +90,7 @@
 
         function receiveMessage(event) {
             var nameSelectInputs2 = document.getElementsByClassName("name-select1")
-            var newOptions = '<option value=""></option>'
+            var newOptions = '<option value=""></option><option value="edit items">edit items</option>'
             for(var i = 0; i < nameSelectInputs2.length; i++){
                 while(nameSelectInputs2[i].firstChild) {
                     nameSelectInputs2[i].removeChild(nameSelectInputs2[i].firstChild)
@@ -100,16 +100,22 @@
                 }
                 nameSelectInputs2[i].insertAdjacentHTML("beforeend", newOptions)
                 window.updatedItems = newOptions
+                newOptions = '<option value=""></option><option value="edit items">edit items</option>'
             }
             console.log(event.data)
         }
         window.addEventListener("message", receiveMessage, false)   
 
         function addRow(e) {
+            var templateOptions = '<option value=""></option><option value="edit items">edit items</option>'
+            if(window.updatedItems){
+                templateOptions = ''
+            }
             gridDaddy.insertAdjacentHTML("beforeend", `
             <div class="row${rowNo}">
                 <select class="name-select1">
-                ${window.updatedItems}
+                    ${templateOptions}
+                    ${window.updatedItems}
                 </select>
                 <input class="cost-input1" type="number">
                 <input class="quantity-input1" type="number">
@@ -186,11 +192,30 @@
             }
 
             function handleChangeItem(e) {
-                console.log(e.target.value)
-
-                if (e.target.value == "edit-item") {
+                if (e.target.value == "edit items") {
                     var editItemWindow = window.open('edit-item-window.html', null, "height=300, width=155, toolbar=no")
-                    
+                    if(window.updatedItems){
+
+                        // function popupReceiveMessage(event) {
+                        //     for(var i = 0; i < event.data.length; i++){
+                        //         if(event.data[i] !== "" && event.data[i] !== "edit items"){
+                        //             editItemWindow.firstRow.insertAdjacentHTML("afterend", `
+                        //                 <div class="options-row">
+                        //                     <input class="normal-item" value=${event.data[i]} type="text">
+                        //                     <div class="minus-sign" onclick="handleMinusClick(this)"></div>
+                        //                 </div>
+                        //             `)
+                        //         }
+                        //     }
+                        //     editItemWindow.console.log(event.data)
+                        // }
+
+                        // editItemWindow.addEventListener("message", popupReceiveMessage, false) 
+                        editItemWindow.onload = function(){
+                            editItemWindow.postMessage(window.updatedItems, "*")  
+                        }
+                    }
+                    e.target.value = ""
                 }
             }
 
