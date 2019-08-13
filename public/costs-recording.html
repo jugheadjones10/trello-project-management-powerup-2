@@ -23,7 +23,6 @@
     </style>
 
     <script>
-        window.updatedHTMLItems = ""
     </script>
 </head>
 
@@ -107,6 +106,9 @@
             var templateOptions = '<option value=""></option><option value="edit items">edit items</option>'
             if(window.updatedHTMLItems){
                 templateOptions = ''
+            }
+            if(!window.updatedHTMLItems){
+                window.updatedHTMLItems = ""
             }
             gridDaddy.insertAdjacentHTML("beforeend", `
             <div class="row${rowNo}">
@@ -209,7 +211,7 @@
 
                         // editItemWindow.addEventListener("message", popupReceiveMessage, false) 
                         editItemWindow.onload = function(){
-                            editItemWindow.postMessage(window.updatedHTMLItems, "*")  
+                            editItemWindow.postMessage(window.updatedItems, "*")  
                         }
                     }
                     e.target.value = ""
