@@ -21,6 +21,10 @@
             padding: 0;
         }
     </style>
+
+    <script>
+            
+    </script>
 </head>
 
 <body>
@@ -72,8 +76,6 @@
         <input class="budget-exceed-amount" type="number" readonly> 
     </div> -->
 
-    <button onclick="fker()">Fk</button>
-
     <textarea class="comments-section" rows="10" cols="100"></textarea>
 
    
@@ -86,16 +88,28 @@
         addRowBut.addEventListener("click", addRow)
         addEventListeners()
 
+        function receiveMessage(event) {
+            var nameSelectInputs2 = document.getElementsByClassName("name-select1")
+            var newOptions = '<option value=""></option>'
+            for(var i = 0; i < nameSelectInputs2.length; i++){
+                while(nameSelectInputs2[i].firstChild) {
+                    nameSelectInputs2[i].removeChild(nameSelectInputs2[i].firstChild)
+                }
+                for(var z = 0; z < event.data.length; z++) {
+                    newOptions += `<option value="${event.data[z]}">${event.data[z]}</option>`
+                }
+                nameSelectInputs2[i].insertAdjacentHTML("beforeend", newOptions)
+                window.updatedItems = newOptions
+            }
+            console.log(event.data)
+        }
+        window.addEventListener("message", receiveMessage, false)   
+
         function addRow(e) {
             gridDaddy.insertAdjacentHTML("beforeend", `
             <div class="row${rowNo}">
                 <select class="name-select1">
-                    <option value=""></option>
-                    <option value="edit-item">add/delete item</option>
-                    <option value="brick">Brick</option>
-                    <option value="wood">Wood</option>
-                    <option value="rice">Rice</option>
-                    <option value="stationery">Stationery</option>
+                ${window.updatedItems}
                 </select>
                 <input class="cost-input1" type="number">
                 <input class="quantity-input1" type="number">
@@ -175,17 +189,7 @@
                 console.log(e.target.value)
 
                 if (e.target.value == "edit-item") {
-                    var editItemWindow = window.open('edit-item-window.html', null, "height=500, width=800, toolbar=no")
-
-                    editItemWindow.onload = function () {
-                        function receiveMessage(event) {
-                            editItemWindow.console.log(event.data)
-                        }
-                        this.addEventListener("message", receiveMessage, false)
-
-
-                        this.postMessage("fuck", '*')
-                    }
+                    var editItemWindow = window.open('edit-item-window.html', null, "height=300, width=155, toolbar=no")
                     
                 }
             }

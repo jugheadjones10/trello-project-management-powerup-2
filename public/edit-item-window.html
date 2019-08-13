@@ -14,18 +14,47 @@
         <div class="add-sign"></div>
     </div>
 
-
+    <button class="save-but">Save</button>
+    <button class="cancel-but">Cancel</button>
 
     <script>
+        function handleMinusClick(eventTarget){
+            console.log(eventTarget)
+            eventTarget.parentNode.parentNode.removeChild(eventTarget.parentNode)
+            // So bascially onclick that is directly on the element does not pass the event object to the handler function
+            // It passess event.target directly only if "this" is specified as a parameter to be passed in
+            // Conclusion : onclick only calls the handler without passing anything while event listener is passed the e object
+        }
+
         var firstRow = document.querySelector(".first-row")
         var newItemInput = document.querySelector(".new-item-input")
         var addSign = document.querySelector(".add-sign")
+        var saveBut = document.querySelector(".save-but")
+        var cancelBut = document.querySelector(".cancel-but")
         addSign.addEventListener("click", function(e){
             firstRow.insertAdjacentHTML("afterend", `
-                <input class="normal-item" value=${newItemInput.value} type="text" readonly>
+                <div class="options-row">
+                    <input class="normal-item" value=${newItemInput.value} type="text" readonly">
+                    <div class="minus-sign" onclick="handleMinusClick(this)"></div>
+                </div>
             `)
         })
-    
+        newItemInput.addEventListener("click", function (e) {
+            e.target.select()
+        })        
+        cancelBut.addEventListener("click", function(e){
+            window.close()
+        })
+        saveBut.addEventListener("click", function (e) {
+            var newOptions = []
+            var normalItems = document.getElementsByClassName("normal-item")
+            for(var i = 0; i < normalItems.length; i++){
+                newOptions[i] = normalItems[i].value
+            }
+            window.opener.postMessage(newOptions, "*")
+            // window.close()
+        })
+        
     </script>
 
 </body>
