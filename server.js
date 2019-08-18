@@ -32,7 +32,7 @@ client.connect(function(err){
   collection.insertOne({hey: "fuck"})
   console.log(6969)
   console.log(err)
-  client.close()
+  // client.close()
 })
 
 
@@ -52,7 +52,7 @@ app.get("/clickjack-test", function(request, response){
 })
 
 app.post("/items/:itemname", function(req, res){
-  client.db("test").inventory.insertOne({item: req.params.itemname}) 
+  client.db("test").devices.insertOne({item: req.params.itemname}) 
   console.log(`received post message of ${req.params.itemname}`)
   res.send("AWD")
 })
