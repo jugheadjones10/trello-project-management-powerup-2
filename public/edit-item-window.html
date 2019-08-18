@@ -35,6 +35,19 @@
         <div class="add-sign"></div>
     </div>
 
+    <div class="options-row">
+        <input class="normal-item" value="" type="text">
+        <div class="minus-sign" onclick="handleMinusClick(this)"></div>
+    </div>
+    <div class="options-row">
+        <input class="normal-item" value="" type="text">
+        <div class="minus-sign" onclick="handleMinusClick(this)"></div>
+    </div>
+    <div class="options-row">
+        <input class="normal-item" value="" type="text">
+        <div class="minus-sign" onclick="handleMinusClick(this)"></div>
+    </div>
+
     <div class="buttons-row">
         <button class="save-but">Save</button>
         <button class="cancel-but">Cancel</button>
@@ -55,6 +68,8 @@
         var saveBut = document.querySelector(".save-but")
         var cancelBut = document.querySelector(".cancel-but")
         newItemInput.select() 
+
+
 
         addSign.addEventListener("click", function(e){
             // if(e.target.parentNode.firstElementChild.value){
