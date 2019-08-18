@@ -77,18 +77,19 @@
         var rowNo = 2
         var addRowBut = document.querySelector(".add-row-button")
         var gridDaddy = document.querySelector(".grid-daddy")
-        var updatedItems
+        // var updatedItems
         addRowBut.addEventListener("click", addRow)
         addEventListeners()
 
         function receiveMessage(event) {
-            updatedItems = event.data
+            window.updatedItems = event.data
             
             var nameSelectInputs2 = document.getElementsByClassName("name-select1")
             var newOptions = '<option value=""></option><option value="edit items">edit items</option>'
             for (var z = 0; z < event.data.length; z++) {
                 newOptions += `<option value="${event.data[z]}">${event.data[z]}</option>`
             }
+            window.updatedHTMLItems = newOptions
             for(var i = 0; i < nameSelectInputs2.length; i++){
                 var originalVal = nameSelectInputs2[i].value
                 while(nameSelectInputs2[i].firstChild) {
@@ -104,8 +105,7 @@
                     nameSelectInputs2[i].value = originalVal
                 }
             }
-            window.updatedHTMLItems = newOptions
-            newOptions = '<option value=""></option><option value="edit items">edit items</option>'
+            // newOptions = '<option value=""></option><option value="edit items">edit items</option>'
             console.log(event.data)
         }
         window.addEventListener("message", receiveMessage, false)   
@@ -200,7 +200,7 @@
             function handleChangeItem(e) {
                 if (e.target.value == "edit items") {
                     var editItemWindow = window.open('edit-item-window.html', null, "height=300, width=155, toolbar=no, left=500, titlebar=no")
-                    if(updatedItems){
+                    if(window.updatedItems){
 
                         // function popupReceiveMessage(event) {
                         //     for(var i = 0; i < event.data.length; i++){
@@ -218,7 +218,7 @@
 
                         // editItemWindow.addEventListener("message", popupReceiveMessage, false) 
                         editItemWindow.onload = function(){
-                            editItemWindow.postMessage(updatedItems, "*")  
+                            editItemWindow.postMessage(window.updatedItems, "*")  
                         }
                     }
                     e.target.value = ""

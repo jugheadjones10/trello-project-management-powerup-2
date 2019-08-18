@@ -60,7 +60,7 @@
             // if(e.target.parentNode.firstElementChild.value){
                 firstRow.insertAdjacentHTML("afterend", `
                     <div class="options-row">
-                        <input class="normal-item" value=${newItemInput.value? newItemInput.value:" "} type="text">
+                        <input class="normal-item" value=${newItemInput.value? newItemInput.value:''} type="text">
                         <div class="minus-sign" onclick="handleMinusClick(this)"></div>
                     </div>
                 `)
