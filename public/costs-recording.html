@@ -86,14 +86,17 @@
             
             var nameSelectInputs2 = document.getElementsByClassName("name-select1")
             var newOptions = '<option value=""></option><option value="edit items">edit items</option>'
+            for (var z = 0; z < event.data.length; z++) {
+                newOptions += `<option value="${event.data[z]}">${event.data[z]}</option>`
+            }
             for(var i = 0; i < nameSelectInputs2.length; i++){
                 var originalVal = nameSelectInputs2[i].value
                 while(nameSelectInputs2[i].firstChild) {
                     nameSelectInputs2[i].removeChild(nameSelectInputs2[i].firstChild)
                 }
-                for(var z = 0; z < event.data.length; z++) {
-                    newOptions += `<option value="${event.data[z]}">${event.data[z]}</option>`
-                }
+                // for(var z = 0; z < event.data.length; z++) {
+                //     newOptions += `<option value="${event.data[z]}">${event.data[z]}</option>`
+                // }
                 nameSelectInputs2[i].insertAdjacentHTML("beforeend", newOptions)
                 // window.updatedHTMLItems = newOptions
                 // newOptions = '<option value=""></option><option value="edit items">edit items</option>'
