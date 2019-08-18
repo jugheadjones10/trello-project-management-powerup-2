@@ -96,28 +96,29 @@
                 }
                 nameSelectInputs2[i].insertAdjacentHTML("beforeend", newOptions)
                 // window.updatedHTMLItems = newOptions
-                newOptions = '<option value=""></option><option value="edit items">edit items</option>'
+                // newOptions = '<option value=""></option><option value="edit items">edit items</option>'
                 if (event.data.includes(originalVal)) {
                     nameSelectInputs2[i].value = originalVal
                 }
             }
+            window.updatedHTMLItems = newOptions
+            newOptions = '<option value=""></option><option value="edit items">edit items</option>'
             console.log(event.data)
         }
         window.addEventListener("message", receiveMessage, false)   
 
         function addRow(e) {
             var templateOptions = '<option value=""></option><option value="edit items">edit items</option>'
-            if(window.updatedHTMLItems){
-                templateOptions = ''
-            }else{
-                window.updatedHTMLItems = ""
-            }
+            // if(window.updatedHTMLItems){
+            //     templateOptions = ''
+            // }else{
+            //     window.updatedHTMLItems = ""
+            // }
 
             gridDaddy.insertAdjacentHTML("beforeend", `
             <div class="row${rowNo}">
                 <select class="name-select1">
-                    ${templateOptions}
-                    ${window.updatedHTMLItems}
+                    ${window.updatedHTMLItems? window.updatedHTMLItems: templateOptions}
                 </select>
                 <input class="cost-input1" type="number">
                 <input class="quantity-input1" type="number">
