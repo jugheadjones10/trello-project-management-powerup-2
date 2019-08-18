@@ -8,26 +8,30 @@ const {google} = require('googleapis')
 // Dependencies required for google map api
 
 /////////Database code//////////////////
-const MongoClient = require('mongodb').MongoClient
-const uri = "mongodb+srv://jugheadjones:jugheadjones10@cluster0-bwizb.gcp.mongodb.net/test?retryWrites=true&w=majority"
-const client = new MongoClient(uri, { useNewUrlParser: true })
+// const MongoClient = require('mongodb').MongoClient
+// const uri = "mongodb+srv://jugheadjones:jugheadjones10@cluster0-bwizb.gcp.mongodb.net/test?retryWrites=true&w=majority"
+// const client = new MongoClient(uri, { useNewUrlParser: true })
 //////////////////////////
 
 var app = express()
 var port = process.env.PORT
 // var port = 3000
 
-client.connect(err => {
-  const db = client.db("test")
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://jugheadjones:jugheadjones10@cluster0-bwizb.gcp.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   // const collection = client.db("test").collection("devices");
+//   // collection.insertOne({hey: "fuck"})
+//   console.log(696969)
+//   // client.close();
+// });
 
-  db.collection('testing-collection').insertOne({
-    item: "canvas",
-    qty: 100,
-    tags: ["cotton"],
-    size: { h: 28, w: 35.5, uom: "cm" }
-  })
-
-  console.log("connected mthfker")
+client.connect(function(err){
+  const collection = client.db("test").collection("devices")
+  collection.insertOne({hey: "fuck"})
+  console.log(6969)
+  console.log(err)
   client.close()
 })
 
@@ -48,7 +52,8 @@ app.get("/clickjack-test", function(request, response){
 })
 
 app.post("/items/:itemname", function(req, res){
-  db.testing-collection.insertOne({item: req.itemname})
+  client.db("test").inventory.insertOne({item: req.params.itemname}) 
+  console.log(`received post message of ${req.params.itemname}`)
   res.send("AWD")
 })
 
