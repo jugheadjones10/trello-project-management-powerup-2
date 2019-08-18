@@ -77,11 +77,12 @@
         var rowNo = 2
         var addRowBut = document.querySelector(".add-row-button")
         var gridDaddy = document.querySelector(".grid-daddy")
+        var updatedItems
         addRowBut.addEventListener("click", addRow)
         addEventListeners()
 
         function receiveMessage(event) {
-            window.updatedItems = event.data
+            updatedItems = event.data
             
             var nameSelectInputs2 = document.getElementsByClassName("name-select1")
             var newOptions = '<option value=""></option><option value="edit items">edit items</option>'
@@ -195,7 +196,7 @@
             function handleChangeItem(e) {
                 if (e.target.value == "edit items") {
                     var editItemWindow = window.open('edit-item-window.html', null, "height=300, width=155, toolbar=no, left=500, titlebar=no")
-                    if(window.updatedItems){
+                    if(updatedItems){
 
                         // function popupReceiveMessage(event) {
                         //     for(var i = 0; i < event.data.length; i++){
@@ -213,7 +214,7 @@
 
                         // editItemWindow.addEventListener("message", popupReceiveMessage, false) 
                         editItemWindow.onload = function(){
-                            editItemWindow.postMessage(window.updatedItems, "*")  
+                            editItemWindow.postMessage(updatedItems, "*")  
                         }
                     }
                     e.target.value = ""
