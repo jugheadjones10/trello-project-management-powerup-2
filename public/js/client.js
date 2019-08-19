@@ -112,64 +112,64 @@ TrelloPowerUp.initialize({
             }]
     },
 
-    // 'card-badges': function (t, opts) {
+    'card-badges': function (t, opts) {
 
-    //     var cardColor
-    //     function callback() {
-    //         return [
-    //             {
-    //                 dynamic: function () {
-    //                     return {
-    //                         text: "Uck",
-    //                         icon: null,
-    //                         color: cardColor,
-    //                         refresh: 10 // in seconds
-    //                     }
-    //                 }
-    //             }
-    //         ]
-    //     }
+        var cardColor
+        function callback() {
+            return [
+                {
+                    dynamic: function () {
+                        return {
+                            text: "Uck",
+                            icon: null,
+                            color: cardColor,
+                            refresh: 10 // in seconds
+                        }
+                    }
+                }
+            ]
+        }
 
-    //     function callback2(callback) {
-    //         Trello.get(`cards/${opts.context.card}/list`, function (list) {
-    //             t.get("board", "shared", "listToColorMapper").then(function (mapper) {
-    //                 cardColor = mapper[list.name]
-    //             })
-    //         })
-    //         return callback()
-    //     }
+        function callback2(callback) {
+            Trello.get(`cards/${opts.context.card}/list`, function (list) {
+                t.get("board", "shared", "listToColorMapper").then(function (mapper) {
+                    cardColor = mapper[list.name]
+                })
+            })
+            return callback()
+        }
 
-    //     return callback2(callback)
+        return callback2(callback)
 
-    //     // let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
-    //     // return t.card('name')
-    //     //     .get('name')
-    //     //     .then(function (cardName) {
-    //     //         //console.log('We just loaded the card name for fun: ' + cardName);
-    //     //         return [{
-    //     //             // dynamic badges can have their function rerun
-    //     //             // after a set number of seconds defined by refresh.
-    //     //             // Minimum of 10 seconds.
-    //     //             dynamic: function () {
-    //     //                 // we could also return a Promise that resolves to
-    //     //                 // this as well if we needed to do something async first
-    //     //                 return {
-    //     //                     text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
-    //     //                     icon: BLACK_ROCKET_ICON,
-    //     //                     color: 'green',
-    //     //                     refresh: 10 // in seconds
-    //     //                 };
-    //     //             }
-    //     //         }, {
-    //     //             // its best to use static badges unless you need your
-    //     //             // badges to refresh you can mix and match between
-    //     //             // static and dynamic
-    //     //             text: 'Static',
-    //     //             icon: BLACK_ROCKET_ICON, // for card front badges only
-    //     //             color: null
-    //     //         }];
-    //     //     });
-    // },
+        // let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
+        // return t.card('name')
+        //     .get('name')
+        //     .then(function (cardName) {
+        //         //console.log('We just loaded the card name for fun: ' + cardName);
+        //         return [{
+        //             // dynamic badges can have their function rerun
+        //             // after a set number of seconds defined by refresh.
+        //             // Minimum of 10 seconds.
+        //             dynamic: function () {
+        //                 // we could also return a Promise that resolves to
+        //                 // this as well if we needed to do something async first
+        //                 return {
+        //                     text: 'Dynamic ' + (Math.random() * 100).toFixed(0).toString(),
+        //                     icon: BLACK_ROCKET_ICON,
+        //                     color: 'green',
+        //                     refresh: 10 // in seconds
+        //                 };
+        //             }
+        //         }, {
+        //             // its best to use static badges unless you need your
+        //             // badges to refresh you can mix and match between
+        //             // static and dynamic
+        //             text: 'Static',
+        //             icon: BLACK_ROCKET_ICON, // for card front badges only
+        //             color: null
+        //         }];
+        //     });
+    },
 
     'attachment-sections': function (t, options) {
         // options.entries is a list of the attachments for this card
@@ -205,61 +205,61 @@ TrelloPowerUp.initialize({
         }
     },
 
-    'card-buttons': function (t, options) {
+    // 'card-buttons': function (t, options) {
 
-        return [{
-            icon: BLACK_ROCKET_ICON,
-            text: "Start project",
-            callback: function (t, options) {
-                t.get("card", "shared", "startTime")
-                    .then(function (startTime) {
-                        if (!startTime) {
-                            t.alert({
-                                message: 'Project has started',
-                                display: 'success'
-                            })
-                            return t.set("card", "shared", "startTime", new Date())
-                        } else {
-                            t.alert({
-                                message: 'Project has already been started',
-                                display: 'error'
-                            })
-                        }
-                    })
-            }
-        },
+    //     return [{
+    //         icon: BLACK_ROCKET_ICON,
+    //         text: "Start project",
+    //         callback: function (t, options) {
+    //             t.get("card", "shared", "startTime")
+    //                 .then(function (startTime) {
+    //                     if (!startTime) {
+    //                         t.alert({
+    //                             message: 'Project has started',
+    //                             display: 'success'
+    //                         })
+    //                         return t.set("card", "shared", "startTime", new Date())
+    //                     } else {
+    //                         t.alert({
+    //                             message: 'Project has already been started',
+    //                             display: 'error'
+    //                         })
+    //                     }
+    //                 })
+    //         }
+    //     },
 
-        {
-            icon: BLACK_ROCKET_ICON,
-            text: "Stop project",
-            callback: function (t, options) {
-                t.getAll("card", "shared")
-                    .then(function (sharedData) {
-                        if (Object.keys(sharedData).length > 0) {
-                            var { card: { shared: { startTime, stopTime } } } = sharedData
-                            if (startTime && !stopTime) {
-                                t.alert({
-                                    message: 'Project completed',
-                                    display: 'success'
-                                })
-                                t.set("card", "shared", "stopTime", new Date())
-                            } else {
-                                t.alert({
-                                    message: 'Project has already been completed',
-                                    display: 'error'
-                                })
-                            }
-                        } else {
-                            t.alert({
-                                message: 'Project has not been started',
-                                display: 'error'
-                            })
-                        }
-                    })
-            }
-        }];
-    }
-    ,
+    //     {
+    //         icon: BLACK_ROCKET_ICON,
+    //         text: "Stop project",
+    //         callback: function (t, options) {
+    //             t.getAll("card", "shared")
+    //                 .then(function (sharedData) {
+    //                     if (Object.keys(sharedData).length > 0) {
+    //                         var { card: { shared: { startTime, stopTime } } } = sharedData
+    //                         if (startTime && !stopTime) {
+    //                             t.alert({
+    //                                 message: 'Project completed',
+    //                                 display: 'success'
+    //                             })
+    //                             t.set("card", "shared", "stopTime", new Date())
+    //                         } else {
+    //                             t.alert({
+    //                                 message: 'Project has already been completed',
+    //                                 display: 'error'
+    //                             })
+    //                         }
+    //                     } else {
+    //                         t.alert({
+    //                             message: 'Project has not been started',
+    //                             display: 'error'
+    //                         })
+    //                     }
+    //                 })
+    //         }
+    //     }];
+    // }
+    // ,
 
     // "card-badges": function (t, options) {
     //     return t.getAll("card", "shared")
