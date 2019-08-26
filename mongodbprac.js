@@ -9,16 +9,15 @@
 //     client.close();
 // });
 
-
-const MongoClient = require('mongodb').MongoClient
-const uri = "mongodb+srv://jugheadjones:jugheadjones10@fuck-xdurj.gcp.mongodb.net/test?retryWrites=true&w=majority"
-const client = new MongoClient(uri, { useNewUrlParser: true })
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://jugheadjones:jugheadjones@fuck-xdurj.gcp.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
 client.connect(err => {
-    const db = client.db("testme")
-    db.collection("devices").insertOne({ awd: 6060 }).then(function(e){
-        console.log("hey babe")
+    const myCollection = client.db("test").collection("help");
+    myCollection.insertOne({ a: 1 }, function (err, r) {
+        
+
+        client.close();
+       
     })
-    console.log("ucsas")
-    // perform actions on the collection object
-    client.close()
 });
