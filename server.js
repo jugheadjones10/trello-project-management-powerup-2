@@ -15,7 +15,7 @@ const MongoClient = require('mongodb').MongoClient
 const uri = "mongodb+srv://jugheadjones:jugheadjones@trello-power-up-oo71y.mongodb.net/test?retryWrites=true&w=majority"
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
-const db
+var db
 client.connect(function (err) {
   db = client.db("official")
   var listener = app.listen(port, function () {
