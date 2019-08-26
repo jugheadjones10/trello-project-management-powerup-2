@@ -7,33 +7,46 @@ const readline = require('readline')
 const {google} = require('googleapis')
 // Dependencies required for google map api
 
-/////////Database code//////////////////
-// const MongoClient = require('mongodb').MongoClient
-// const uri = "mongodb+srv://jugheadjones:jugheadjones10@cluster0-bwizb.gcp.mongodb.net/test?retryWrites=true&w=majority"
-// const client = new MongoClient(uri, { useNewUrlParser: true })
-//////////////////////////
-
 var app = express()
 var port = process.env.PORT
-// var port = 3000
+
 
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://jugheadjones:jugheadjones10@cluster0-bwizb.gcp.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   // const collection = client.db("test").collection("devices");
-//   // collection.insertOne({hey: "fuck"})
-//   console.log(696969)
-//   // client.close();
-// });
+const uri = "mongodb+srv://jugheadjones:jugheadjones@trello-power-up-oo71y.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-client.connect(function(err){
-  const collection = client.db("test").collection("devices")
-  collection.insertOne({hey: "fuck"})
-  console.log(6969)
-  console.log(err)
-  // client.close()
-})
+client.connect(function (err) {
+  const db = client.db("test");
+
+  db.collection('inventory').insertMany([
+    // MongoDB adds the _id field with an ObjectId if _id is not present
+    {
+      item: "journal", qty: 25, status: "A",
+      size: { h: 14, w: 21, uom: "cm" }, tags: ["blank", "red"]
+    },
+    {
+      item: "notebook", qty: 50, status: "A",
+      size: { h: 8.5, w: 11, uom: "in" }, tags: ["red", "blank"]
+    },
+    {
+      item: "paper", qty: 100, status: "D",
+      size: { h: 8.5, w: 11, uom: "in" }, tags: ["red", "blank", "plain"]
+    },
+    {
+      item: "planner", qty: 75, status: "D",
+      size: { h: 22.85, w: 30, uom: "cm" }, tags: ["blank", "red"]
+    },
+    {
+      item: "postcard", qty: 45, status: "A",
+      size: { h: 10, w: 15.25, uom: "cm" }, tags: ["blue"]
+    }
+  ])
+    .then(function (result) {
+      console.log(result)
+    })
+
+  client.close();
+});
 
 
 // your manifest must have appropriate CORS headers, you could also use '*'
