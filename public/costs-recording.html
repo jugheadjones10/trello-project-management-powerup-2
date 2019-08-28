@@ -4,7 +4,7 @@
     <script src="https://p.trellocdn.com/power-up.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://trello.com/1/client.js?key=aa0f9cf4d2d738632836aa054dcdda43"></script>
-    <!-- <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css"> -->
+    <link rel="stylesheet" href="https://trello.com/power-ups/power-up.css">
     <link rel="stylesheet" href="costs-recording.css">
     <style>
         /* To counter trello styling which gives select a margin-bottom of 1em */
@@ -97,28 +97,16 @@
                 while(nameSelectInputs2[i].firstChild) {
                     nameSelectInputs2[i].removeChild(nameSelectInputs2[i].firstChild)
                 }
-                // for(var z = 0; z < event.data.length; z++) {
-                //     newOptions += `<option value="${event.data[z]}">${event.data[z]}</option>`
-                // }
                 nameSelectInputs2[i].insertAdjacentHTML("beforeend", newOptions)
-                // window.updatedHTMLItems = newOptions
-                // newOptions = '<option value=""></option><option value="edit items">edit items</option>'
                 if (event.data.includes(originalVal)) {
                     nameSelectInputs2[i].value = originalVal
                 }
             }
-            // newOptions = '<option value=""></option><option value="edit items">edit items</option>'
-            //  console.log(event.data)
         }
         window.addEventListener("message", receiveMessage, false)   
 
         function addRow(e) {
             var templateOptions = '<option value=""></option><option value="edit items">edit items</option>'
-            // if(window.updatedHTMLItems){
-            //     templateOptions = ''
-            // }else{
-            //     window.updatedHTMLItems = ""
-            // }
 
             gridDaddy.insertAdjacentHTML("beforeend", `
             <div class="row${rowNo}">
